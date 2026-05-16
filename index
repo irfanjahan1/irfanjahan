@@ -267,6 +267,186 @@ body {
 }
 .landing-wa a { color: #25d366; text-decoration: none; font-weight: 700; }
 
+/* ── View Details button on landing ── */
+.view-details-btn {
+  background: rgba(255,255,255,0.55);
+  border: 1.5px solid rgba(255,255,255,0.85);
+  color: #083318;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 7px 20px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  margin-bottom: 14px;
+  letter-spacing: .3px;
+  transition: var(--transition);
+}
+.view-details-btn:hover {
+  background: rgba(255,255,255,0.85);
+  transform: translateY(-1px);
+}
+
+/* ── Course Details Popup ── */
+#course-details-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: rgba(6,23,16,0.72);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#course-details-modal.open { display: flex; }
+.cdm-box {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  max-width: 520px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+  position: relative;
+  animation: cdmIn 0.28s cubic-bezier(.4,0,.2,1) both;
+}
+@keyframes cdmIn {
+  from { opacity:0; transform: translateY(18px) scale(0.97); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+/* Fixed top bar — never scrolls */
+.cdm-top-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(40,168,112,0.12);
+  background: #fff;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+.cdm-close {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--green-800);
+  border: 2.5px solid var(--green-600);
+  color: #fff;
+  font-size: 1.1rem; font-weight: 900;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.18s, transform 0.18s;
+  flex-shrink: 0;
+}
+.cdm-close:hover { background: var(--green-600); transform: scale(1.1); }
+/* Scrollable content area */
+.cdm-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  padding: 22px 36px 20px;
+}
+.cdm-scroll::-webkit-scrollbar { display: none; }
+/* Fixed bottom bar with arrow button — never scrolls */
+.cdm-bottom-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px 14px;
+  background: #fff;
+  border-top: 1px solid rgba(40,168,112,0.12);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+.cdm-arrow-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--green-700);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.18s, transform 0.18s;
+}
+.cdm-arrow-btn:hover { background: var(--green-500); transform: scale(1.1); }
+.cdm-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem; font-weight: 800;
+  color: var(--green-800);
+  text-align: center; margin-bottom: 18px; letter-spacing: .4px;
+}
+.cdm-body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.92rem; color: #1a3a25; line-height: 1.75;
+}
+.cdm-body p { margin-bottom: 12px; }
+.cdm-sub-heading { font-weight: 900; color: var(--green-700); margin-bottom: 8px !important; }
+.cdm-body ul { list-style: none; padding: 0; margin: 0 0 18px; }
+.cdm-body ul li {
+  padding: 7px 0 7px 28px; position: relative;
+  border-bottom: 1px solid rgba(40,168,112,0.1); font-weight: 700;
+}
+.cdm-body ul li:last-child { border-bottom: none; }
+.cdm-body ul li::before { content:'✓'; position:absolute; left:0; color:var(--green-500); font-weight:900; }
+.cdm-divider {
+  border: none;
+  border-top: 1.5px solid rgba(40,168,112,0.22);
+  margin: 18px 0 12px;
+}
+.cdm-copyright {
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: .3px;
+  padding-bottom: 4px;
+}
+
+/* Welcome to + contact info on landing */
+.landing-welcome-to {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-weight: 600;
+  color: var(--green-700);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.landing-contact-info {
+  margin-top: 1.8rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #083318;
+  line-height: 2;
+}
+.landing-contact-line {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  font-weight: 600;
+}
+.landing-contact-link {
+  color: #145c35; text-decoration: none; font-weight: 700;
+}
+.landing-contact-link:hover { text-decoration: underline; }
+.landing-copy-btn {
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  line-height: 1.4;
+  height: 1.4em;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+  vertical-align: middle;
+}
+.landing-copy-btn:hover { background: rgba(255,255,255,0.85); }
+
 /* ═══════════════════════════════════════════════════
    PAGE 1 — COURSE INDEX (60-day grid)
 ═══════════════════════════════════════════════════ */
@@ -331,6 +511,7 @@ body {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-bottom: 4px;
+  justify-content: space-between;
 }
 .weeks-nav::-webkit-scrollbar { display: none; }
 .week-pill {
@@ -342,6 +523,8 @@ body {
   font-family: 'Nunito', sans-serif;
   font-size: 0.72rem; font-weight: 800;
   cursor: pointer; transition: var(--transition);
+  flex: 1;
+  text-align: center;
 }
 .week-pill:hover, .week-pill.active { background: var(--green-400); border-color: var(--green-300); color: #fff; }
 
@@ -655,6 +838,7 @@ body {
 .s-flashcard.animating { opacity:0; }
 .phrase-en { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--gold); line-height:1.2; font-weight:700; }
 .phrase-ur { font-family:'Noto Nastaliq Urdu',serif; direction:rtl; font-size:1.35rem; line-height:2.2; color:#fff; }
+.phrase-ps { font-family:'Noto Nastaliq Urdu',serif; direction:rtl; font-size:1.2rem; line-height:2.2; color:var(--gold); margin-top:4px; }
 
 .s-nav-btns { display:flex; gap:10px; width:100%; justify-content:center; flex-wrap:wrap; }
 .s-btn {
@@ -775,9 +959,9 @@ body {
 .tp-row.active .tp-text { font-size:1.05rem; font-weight:900; text-shadow:0 2px 4px rgba(0,0,0,0.3); }
 
 .tp-urdu {
-  font-family:'Noto Nastaliq Urdu',serif; font-weight:700; font-size:1.2rem;
-  color:var(--text-dark); text-align:center; direction:rtl; line-height:1.8;
-  min-height:64px; margin-bottom:18px; padding:0 10px;
+  font-family:'Noto Nastaliq Urdu',serif; font-weight:700; font-size:0.92rem;
+  color:var(--text-dark); text-align:center; direction:rtl; line-height:1.6;
+  min-height:44px; margin-bottom:8px; padding:0 10px;
 }
 .chunk-nav { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:18px; }
 .chunk-btn {
@@ -996,6 +1180,20 @@ body {
 .retake-btn { display:inline-flex; align-items:center; gap:8px; background:var(--green-800); color:#fff; border:none; padding:12px 30px; font-size:1rem; border-radius:25px; cursor:pointer; font-weight:800; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-top:14px; font-family:'Nunito',sans-serif; transition:var(--transition); }
 .retake-btn:hover { background:var(--green-700); }
 .a-bottom-nav { display:none; flex-direction:row; gap:10px; justify-content:center; margin-top:16px; }
+/* Fill-in-the-blank styles */
+.a-fill-box { margin-bottom:20px; padding:14px; background:#f8fffe; border-radius:12px; border:1.5px solid var(--green-100); }
+.a-fill-title { font-weight:900; font-size:0.88rem; color:var(--green-700); margin-bottom:10px; letter-spacing:.3px; text-transform:uppercase; }
+.a-word-bank { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:12px; padding:10px; background:rgba(40,168,112,0.07); border-radius:8px; border:1px dashed rgba(40,168,112,0.3); }
+.a-bank-word { background:#fff; border:1.5px solid var(--green-300); color:var(--green-800); padding:4px 11px; border-radius:20px; font-weight:800; font-size:0.82rem; cursor:pointer; transition:var(--transition); font-family:'Nunito',sans-serif; }
+.a-bank-word:hover { background:var(--green-50); }
+.a-bank-word.used { opacity:0.35; pointer-events:none; text-decoration:line-through; }
+.a-bank-word.selected { background:var(--green-600); color:#fff; border-color:var(--green-600); }
+.a-para-text { font-size:0.9rem; line-height:2.1; color:var(--text-dark); font-weight:600; }
+.a-blank { display:inline-block; min-width:80px; border-bottom:2.5px solid var(--green-400); margin:0 3px; padding:1px 6px; cursor:pointer; color:var(--green-700); font-weight:800; font-size:0.88rem; text-align:center; border-radius:3px 3px 0 0; transition:background 0.15s; vertical-align:bottom; }
+.a-blank:hover { background:rgba(40,168,112,0.08); }
+.a-blank.filled { background:rgba(40,168,112,0.10); color:var(--green-800); }
+.a-blank.correct-fill { background:#d4edda !important; border-color:#28a745 !important; color:#155724 !important; }
+.a-blank.wrong-fill { background:#f8d7da !important; border-color:#dc3545 !important; color:#721c24 !important; }
 
 /* ═══════════════════════════════════════════════════
    FOOTER (inner pages)
@@ -1316,7 +1514,7 @@ body { color: #0d1f13; }
         <line x1="3" y1="18" x2="21" y2="18"/>
       </svg>
     </button>
-    <div id="ud-title">Day 2: How to Introduce Yourself</div>
+    <div id="ud-title">Day 1: [Topic]</div>
   </div>
   <div id="ud-user-info">
     <span id="ud-user-name" style="display:none"></span>
@@ -1350,371 +1548,94 @@ body { color: #0d1f13; }
 <!-- ═══════════════ PAGE 0: LANDING ═══════════════ -->
 <div id="page-landing" class="page active">
   <div class="landing-title-wrap">
+    <p class="landing-welcome-to">Welcome to</p>
     <h1 class="landing-title-main">English Mastery Course</h1>
     <p class="landing-title-by">by Irfan Jahan</p>
   </div>
   <p class="landing-sub">A gradual 60-day journey to build native-like English fluency — from basic greetings to confident public speaking.</p>
-  <button id="startBtn" onclick="showCourse()">🎯 Start Learning English</button>
-  <p class="landing-wa">Questions? <a href="https://wa.me/923498768545">WhatsApp: 03498768545</a></p>
+  <button class="view-details-btn" onclick="openDetailsPopup()">📋 View Details</button>
+  <button id="startBtn" onclick="landingStart()">🎯 Start Learning English</button>
+  <div class="landing-contact-info">
+    <div class="landing-contact-line">
+      WhatsApp:&nbsp;<a href="https://wa.me/923498768545" class="landing-contact-link">03498768545</a>
+      <button class="landing-copy-btn" onclick="landingCopy('03498768545', this)" title="Copy WhatsApp number">📋</button>
+    </div>
+    <div class="landing-contact-line">
+      Email:&nbsp;<a href="mailto:brief.irfan@gmail.com" class="landing-contact-link">brief.irfan@gmail.com</a>
+      <button class="landing-copy-btn" onclick="landingCopy('brief.irfan@gmail.com', this)" title="Copy email">📋</button>
+    </div>
+    <hr style="border:none;border-top:1px solid rgba(8,51,24,0.3);margin:0.6rem auto;width:85%;">
+    <div class="landing-contact-line">Copyright &copy; Master English Academy</div>
+  </div>
+</div>
+
+<!-- ═══════════════ COURSE DETAILS POPUP ═══════════════ -->
+<div id="course-details-modal">
+  <div class="cdm-box">
+    <!-- Fixed top bar: close button always visible -->
+    <div class="cdm-top-bar">
+      <button class="cdm-close" onclick="closeDetailsPopup()" aria-label="Close">✕</button>
+    </div>
+    <!-- Scrollable content -->
+    <div class="cdm-scroll" id="cdm-scroll">
+      <h2 class="cdm-title">About This Course</h2>
+      <div class="cdm-body">
+        <p>In this course, I will teach you English from the very beginner level to mastery. We will start with the basics and progress step by step.</p>
+        <p>Throughout this course, you will learn through vocabulary flashcards, phrases, sentences with translations, shadowing practice, conversations, speaking tests, assessments, and practical tasks such as recording videos of yourself.</p>
+        <p class="cdm-sub-heading">By the end of this course, you will:</p>
+        <ul>
+          <li>Learn 5,000+ essential English vocabulary words</li>
+          <li>Master 10,000+ phrases and sentences commonly used by native speakers</li>
+          <li>Communicate confidently in English in daily life</li>
+          <li>Hold natural, fluent conversations in English</li>
+          <li>Improve your speaking, listening, reading, and writing skills</li>
+          <li>Build strong grammar and sentence formation skills</li>
+          <li>Speak English with greater confidence and fluency</li>
+          <li>Polish your presentation and public speaking skills</li>
+          <li>Deliver hour-long speeches in English with confidence</li>
+        </ul>
+        <hr class="cdm-divider"/>
+        <p class="cdm-copyright">Copyright &copy; Master English Academy</p>
+      </div>
+    </div>
+    <!-- Fixed bottom bar: arrow button always visible -->
+    <div class="cdm-bottom-bar">
+      <button class="cdm-arrow-btn" id="cdm-arrow-btn" onclick="cdmScroll()" title="Scroll down">&#8595;</button>
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════ PAGE 1: COURSE INDEX ═══════════════ -->
 <div id="page-course" class="page with-dash">
   <div class="course-inner">
     <div class="course-welcome">
-      <h2 class="course-welcome-title">Welcome to Your English Mastery Course</h2>
+      <button onclick="showPage('landing')" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);color:var(--green-900);font-family:'Nunito',sans-serif;font-size:0.72rem;font-weight:800;padding:5px 13px;border-radius:var(--radius-pill);cursor:pointer;margin-bottom:10px;letter-spacing:.3px;transition:var(--transition);" onmouseover="this.style.background='rgba(255,255,255,0.35)'" onmouseout="this.style.background='rgba(255,255,255,0.18)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </button>
+      <h2 class="course-welcome-title">Welcome to English Mastery Course</h2>
     </div>
-    <div class="weeks-nav" id="weeksNav"></div>
+    <div style="position:relative;background:rgba(0,0,0,0.08);border-radius:var(--radius-md);padding:8px 10px;margin-bottom:0.75rem;">
+      <button id="weeks-scroll-left" onclick="weeksScrollBy(-180)" style="display:none;position:absolute;left:4px;top:50%;transform:translateY(-50%);z-index:2;width:28px;height:28px;border-radius:50%;background:rgba(6,23,16,0.72);border:1px solid rgba(255,255,255,0.22);color:#fff;font-size:0.8rem;cursor:pointer;align-items:center;justify-content:center;transition:background 0.18s;" onmouseover="this.style.background='rgba(40,168,112,0.8)'" onmouseout="this.style.background='rgba(6,23,16,0.72)'">&#8592;</button>
+      <div class="weeks-nav" id="weeksNav" style="padding-bottom:0;"></div>
+      <button id="weeks-scroll-right" onclick="weeksScrollBy(180)" style="display:none;position:absolute;right:4px;top:50%;transform:translateY(-50%);z-index:2;width:28px;height:28px;border-radius:50%;background:rgba(6,23,16,0.72);border:1px solid rgba(255,255,255,0.22);color:#fff;font-size:0.8rem;cursor:pointer;align-items:center;justify-content:center;transition:background 0.18s;" onmouseover="this.style.background='rgba(40,168,112,0.8)'" onmouseout="this.style.background='rgba(6,23,16,0.72)'">&#8594;</button>
+    </div>
     <div class="course-progress-wrap">
       <div class="course-progress-meta">
         <span class="course-progress-label">Your Progress</span>
-        <span class="course-progress-count" id="course-prog-count">2 / 60 Days</span>
+        <span class="course-progress-count" id="course-prog-count">0 / 60 Days</span>
       </div>
       <div class="course-progress-track">
-        <div class="course-progress-fill" id="course-prog-fill" style="width:3.33%"></div>
+        <div class="course-progress-fill" id="course-prog-fill" style="width:0%"></div>
       </div>
     </div>
     <div class="days-grid" id="daysGrid"></div>
   </div>
   <div class="course-footer">
     <a href="https://wa.me/923498768545" class="wa-highlight">📱 WhatsApp: 03498768545</a>
-    <div style="margin-top:10px;font-size:0.82rem;color:rgba(255,255,255,0.55);">
-      ✉️ Email: <a href="mailto:brief.irfan@gmail.com" style="color:rgba(255,255,255,0.7);text-decoration:none;">brief.irfan@gmail.com</a>
-    </div>
   </div>
 </div>
 
-<!-- ═══════════════ PAGE 2: DAY 1 INTRO ═══════════════ -->
-<div id="page-day1" class="page with-dash">
-  <main>
-    <div class="intro-card">
-      <h1>Day <span>2: How to Introduce Yourself</span></h1>
-      <div class="intro-divider"></div>
-      <div class="intro-body">
-        <p style="margin-bottom:4px;font-weight:800;color:var(--text-dark);">In today's lesson, you will learn:</p>
-        <p style="margin-bottom:14px;font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-weight:700;font-size:0.88rem;color:var(--text-mid);">آج کے سبق میں آپ سیکھیں گے:</p>
-        <ul>
-          <li>100 essential vocabulary words for self-introduction and personal information
-            <div style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-weight:700;font-size:0.85rem;color:var(--text-mid);margin-top:4px;">خود تعارف اور ذاتی معلومات کے لیے 100 ضروری الفاظ</div>
-          </li>
-          <li>60 useful sentences and phrases to introduce yourself confidently
-            <div style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-weight:700;font-size:0.85rem;color:var(--text-mid);margin-top:4px;">اعتماد کے ساتھ اپنا تعارف کروانے کے لیے 60 مفید جملے اور فقرے</div>
-          </li>
-          <li>How to tell others your name, age, location, family, and interests in English
-            <div style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-weight:700;font-size:0.85rem;color:var(--text-mid);margin-top:4px;">انگریزی میں دوسروں کو اپنا نام، عمر، مقام، خاندان اور دلچسپیاں بتانے کا طریقہ</div>
-          </li>
-          <li>How to start, continue, and complete a basic self-introduction conversation naturally
-            <div style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-weight:700;font-size:0.85rem;color:var(--text-mid);margin-top:4px;">بنیادی تعارفی گفتگو کو قدرتی طور پر شروع کرنے، جاری رکھنے اور مکمل کرنے کا طریقہ</div>
-          </li>
-        </ul>
-      </div>
-      <button class="cta-btn" onclick="gotoPage('vocab')" style="margin-top:8px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        Start Learning
-      </button>
-      <button onclick="showCourse()" style="margin-top:12px;background:none;border:1.5px solid var(--green-400);color:var(--green-600);border-radius:var(--radius-pill);padding:10px 24px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:0.2s;" onmouseover="this.style.background='#f0fdf4'" onmouseout="this.style.background='none'">
-        ← Go Back to Course Dashboard
-      </button>
-    </div>
-  </main>
-</div>
-
-<!-- ═══════════════ PAGE 3: VOCABULARY ═══════════════ -->
-<div id="page-vocab" class="page">
-  <div class="v-header"><h2>Vocabulary Builder</h2></div>
-  <div class="v-card">
-    <div class="progress-wrap">
-      <div class="progress-label">
-        <span id="v-prog-text">0 / 0</span>
-        <span id="v-cat-pill" style="padding:2px 10px;border-radius:50px;font-size:0.62rem;border:1px solid rgba(255,255,255,0.3);">LEARNING</span>
-      </div>
-      <div class="progress-bar"><div class="progress-fill" id="v-prog-fill" style="width:1%"></div></div>
-    </div>
-
-    <div class="flashcard-scene" style="position:relative;">
-      <div class="v-start-overlay" id="v-start-overlay">
-        <button class="v-start-btn" id="v-start-main-btn" onclick="vStart()">▶ Start</button>
-      </div>
-      <div class="flashcard" id="v-flashcard">
-        <div class="card-face card-front" id="v-card-front">
-          <div class="card-word" id="v-word">—</div>
-          <div class="flip-hint">Tap to flip</div>
-        </div>
-        <div class="card-face card-back">
-          <div class="card-word" id="v-word-back" style="font-size:1.2rem">—</div>
-          <div class="card-urdu" id="v-urdu">—</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-row">
-      <button class="nav-btn-card" id="v-prev" onclick="vPrev()" disabled style="visibility:hidden">◀ Previous</button>
-      <button class="nav-btn-card" id="v-next" onclick="vNext()" style="visibility:hidden">Next ▶</button>
-    </div>
-  </div>
-  <button class="v-start-btn" id="v-restart-btn" onclick="vRestart()" style="margin-top:10px;display:none;">↺ Start Again</button>
-</div>
-
-<!-- ═══════════════ PAGE 4: SENTENCES ═══════════════ -->
-<div id="page-sentences" class="page">
-  <div class="s-main">
-    <h1 class="s-title">Phrases &amp; Sentences</h1>
-    <div class="s-card" style="position:relative;">
-      <div class="s-start-overlay" id="s-start-overlay">
-      </div>
-      <div class="counter-bar">
-        <span class="counter-text" id="s-counter">1 / 60</span>
-        <div class="progress-track"><div class="progress-fill" id="s-prog"></div></div>
-        <div class="cat-tag" id="s-cat">Basic</div>
-      </div>
-      <div class="s-flashcard" id="s-flashcard">
-        <div class="phrase-en" id="s-en"></div>
-        <div class="phrase-ur" id="s-ur"></div>
-      </div>
-    </div>
-    <div class="s-nav-btns">
-      <button class="s-btn s-btn-outline" id="s-prev" onclick="sNav(-1)" style="visibility:hidden">◀ Previous</button>
-      <button class="s-btn s-btn-speak" id="s-speak" onclick="sToggleStartStop()">▶ Start</button>
-      <button class="s-btn s-btn-primary" id="s-next" onclick="sNav(1)" style="visibility:hidden">Next ▶</button>
-    </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ PAGE 5: SHADOWING PRACTICE ═══════════════ -->
-<div id="page-practice" class="page with-dash">
-  <div class="p-wrap">
-    <h2 class="p-section-title">Shadowing Practice</h2>
-    <div class="p-card">
-      <div class="teleprompter">
-        <div class="p-start-overlay" id="p-overlay">
-          <button class="p-start-btn" onclick="pStart()">▶ START PRACTICE</button>
-        </div>
-        <div class="tp-highlight"></div>
-        <div class="tp-track" id="tp-track">
-          <div id="tp-inner"></div>
-        </div>
-      </div>
-      <div class="tp-urdu" id="tp-urdu"></div>
-      <div class="chunk-nav">
-        <button class="chunk-btn" id="p-prev" onclick="pGo(pCur-1)" disabled style="visibility:hidden">◀ Previous</button>
-        <button class="p-play-btn" id="p-play-btn" onclick="pPlayToggle()" style="visibility:hidden" title="Play / Pause">
-          <svg id="p-play-icon" viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><polygon points="5,3 19,12 5,21"/></svg>
-          <svg id="p-pause-icon" viewBox="0 0 24 24" fill="currentColor" width="26" height="26" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
-        </button>
-        <button class="chunk-btn" id="p-next" style="visibility:hidden">Next ▶</button>
-      </div>
-      <div class="p-action-row">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ PAGE 6: CONVERSATION ═══════════════ -->
-<div id="page-convo" class="page">
-  <div class="c-main">
-    <h2 class="c-topic">Conversation Practice</h2>
-    <div class="c-progress-wrap"><div class="c-progress-fill" id="c-prog"></div></div>
-    <div class="phone-wrapper">
-      <button class="phone-nav-btn" id="c-prevBtn" onclick="cStep(-1)" disabled style="visibility:hidden">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="mobile-phone">
-        <div class="phone-notch"></div>
-        <div class="status-bar">
-          <span>9:41</span>
-          <span style="font-size:0.85rem;">📶 🔋</span>
-        </div>
-        <div class="chat-head">
-          <div class="ch-avatar">🗣️</div>
-          <div class="ch-info"><h4>Language Partner</h4><p>● Online</p></div>
-        </div>
-        <div class="chat-window" id="c-window">
-          <div class="start-overlay" id="c-overlay">
-            <button class="start-chat-btn" onclick="cStart()">▶ Start Chat</button>
-          </div>
-          <div id="c-wave-container" style="display:none">
-            <div class="c-wave-anim">
-              <span></span><span></span><span></span><span></span><span></span>
-            </div>
-          </div>
-          <div class="msg-row left" id="c-q-row" style="display:none">
-            <div class="bubble">
-              <div id="c-q-en">...</div>
-              <div class="ur-sub" id="c-q-ur"></div>
-            </div>
-          </div>
-          <div class="msg-row right">
-            <div class="bubble" id="c-r-bubble" style="display:none">
-              <div id="c-r-en">...</div>
-              <div class="ur-sub" id="c-r-ur"></div>
-            </div>
-          </div>
-        </div>
-        <div class="chat-input-bar">
-          <div class="fake-input">Type a message...</div>
-          <div class="mic-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
-          </div>
-        </div>
-      </div>
-      <button class="phone-nav-btn" id="c-nextBtn" onclick="cStep(1)" disabled style="visibility:hidden">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-    <div class="c-action-row">
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ PAGE 7: SPEAKING TEST ═══════════════ -->
-<div id="page-test" class="page">
-  <div class="t-container">
-    <h1 class="t-section-label">Speaking Test</h1>
-    <div class="t-instruction" id="t-instruction">Try to answer each question in your own words</div>
-    <div class="t-progress-wrap">
-      <div class="t-progress-fill" id="t-prog"></div>
-      <div class="t-progress-text" id="t-prog-text">Questions completed: 0 / 0</div>
-    </div>
-    <div class="t-card">
-      <div class="t-start-screen" id="t-start">
-        <button class="t-start-btn" onclick="tStart()">Speaking Test</button>
-      </div>
-      <div class="t-content" id="t-content">
-        <div class="t-question" onclick="tPlayTTS('t-q-text')" style="text-align:center;">
-          <div class="t-q-text" id="t-q-text" style="text-align:center;"></div>
-        </div>
-        <div class="t-reveal" id="t-reveal">
-          <div class="t-answer-box"><div class="t-a-text" id="t-a-text"></div></div>
-        </div>
-      </div>
-      <div class="t-congrats" id="t-congrats">
-        <h2 class="congrats-title">Congratulations! 🎉</h2>
-        <p class="congrats-sub">You have completed the Speaking Test.</p>
-      </div>
-    </div>
-    <div class="t-ctrl" id="t-ctrl-bar" style="display:none; margin-top:12px;">
-      <button class="t-nav-btn" id="t-prev" onclick="tMove(-1)">◀ Prev</button>
-      <button class="t-show-btn" id="t-show" onclick="tShowAnswer()">Show Answer</button>
-      <button class="t-nav-btn" id="t-next" onclick="tHandleNext()">Next ▶</button>
-    </div>
-    <div class="t-lesson-group">
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ PAGE 8: CHALLENGE ═══════════════ -->
-<div id="page-challenge" class="page with-dash">
-  <main>
-    <div style="width:100%;max-width:460px;text-align:center;padding-top:10px;">
-      <h1 style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:800;color:var(--green-900);letter-spacing:.5px;margin-bottom:14px;">Challenge</h1>
-    </div>
-    <div class="intro-card" style="max-width:460px;padding:0;overflow:hidden;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,0.3);">
-
-      <!-- Challenge Header -->
-      <div style="background-color:#064e3b;color:white;padding:20px 10px;text-align:center;">
-        <h1 style="margin:0;font-size:1.1rem;font-family:'Nunito',sans-serif;font-weight:800;color:#ffffff;">Day 2: How to Introduce Yourself</h1>
-        <p style="margin:5px 0 0;font-size:0.85rem;opacity:0.9;">Task for Today: Give your response to the following</p>
-      </div>
-
-      <!-- Challenge Form -->
-      <div style="background-color:#d1fae5;padding:15px;">
-        <div style="background-color:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:12px;border:1px solid #bbf7d0;">
-          <label style="display:block;font-weight:bold;color:#064e3b;margin-bottom:8px;font-size:0.85rem;">Write your self-introduction paragraph:</label>
-          <textarea id="cq-para" placeholder="Write your self-introduction here in English..." style="width:100%;padding:10px;border:1px solid #86efac;border-radius:8px;font-size:0.9rem;background:#fff;resize:vertical;min-height:150px;line-height:1.7;font-family:'Nunito',sans-serif;box-sizing:border-box;outline:none;-webkit-appearance:none;"></textarea>
-        </div>
-        <div style="text-align:center;margin-top:8px;">
-          <button onclick="challengeGenerateImage()" style="background-color:#059669;color:white;border:none;padding:10px 30px;border-radius:20px;font-weight:bold;font-size:0.85rem;cursor:pointer;transition:0.2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;">Submit &amp; Download Image</button>
-        </div>
-      </div>
-
-      <!-- Challenge Footer -->
-      <div style="background-color:#064e3b;color:white;padding:20px 10px;text-align:center;">
-        <div style="font-weight:bold;font-size:0.8rem;">Share this image with me on WhatsApp</div>
-        <div style="margin:2px 0;font-size:0.85rem;">0349 8768545</div>
-        <div onclick="challengeCopyNumber()" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:4px 10px;border-radius:12px;cursor:pointer;font-size:0.75rem;margin-top:8px;display:inline-block;">Copy Number 📋</div>
-        <div style="margin-top:10px;font-size:0.65rem;opacity:0.7;">0349 8768545 &copy; 2026 English Learning Portal</div>
-        <div style="margin-top:14px;">
-        </div>
-      </div>
-    </div>
-
-    <!-- Hidden image export area -->
-    <div id="challenge-capture-area" style="position:absolute;left:-9999px;width:360px;background:transparent;text-align:center;padding:0;">
-      <div style="background:transparent;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;">
-        <!-- Header: quiz marks centered -->
-        <div style="background-color:#064e3b;color:white;padding:14px 14px 10px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;">
-          <!-- Quiz Marks centered -->
-          <div id="ch-header-marks" style="font-size:1rem;font-weight:800;color:#fff;text-align:center;line-height:1.4;padding:4px 0 8px;letter-spacing:0.3px;">Quiz Marks: —</div>
-          <!-- Horizontal divider line -->
-          <div style="height:1px;background:rgba(255,255,255,0.3);width:88%;margin-bottom:8px;"></div>
-          <!-- Day + Writing Task -->
-          <div id="ch-header-day" style="font-size:0.72rem;font-weight:800;line-height:1.3;">Day 2: Writing Task</div>
-        </div>
-        <!-- Body: paragraph of answers -->
-        <div style="background:#d1fae5;padding:16px 18px 0;">
-          <div id="challenge-results-content" style="background:#fff;border-radius:10px;padding:12px 14px;font-size:0.82rem;font-weight:500;color:#1a1a1a;line-height:1.75;text-align:left;"></div>
-        </div>
-        <!-- Divider + Speaking Task -->
-        <div style="background:#d1fae5;padding:10px 18px 16px;">
-          <div style="height:1.5px;background:#064e3b;opacity:0.3;margin-bottom:10px;"></div>
-          <div style="text-align:center;font-size:0.78rem;font-weight:800;color:#064e3b;margin-bottom:5px;letter-spacing:0.3px;">Speaking Task</div>
-          <div style="font-size:0.72rem;color:#1a1a1a;text-align:center;font-style:italic;line-height:1.6;">Now make a video of yourself. Record a video introducing yourself. Take help from the above paragraph.</div>
-        </div>
-        <div style="height:8px;background:#d1fae5;"></div>
-        <div style="background-color:#064e3b;color:white;padding:12px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-          <p style="margin:0 0 3px 0;font-size:0.7rem;opacity:0.9;">Share this image with me on WhatsApp</p>
-          <h4 style="margin:0 0 5px 0;font-size:0.9rem;font-weight:600;">0349 8768545</h4>
-          <div style="height:1px;background:rgba(255,255,255,0.2);width:80%;margin:0 auto 5px auto;"></div>
-          <p style="margin:0;font-size:0.62rem;opacity:0.7;">Master English Academy</p>
-        </div>
-      </div>
-    </div>
-  </main>
-  <footer class="intro-footer light">
-    <a href="https://wa.me/923498768545">WhatsApp: 03498768545</a>
-    Copyright &copy; <span class="yr"></span> Master English Academy
-  </footer>
-</div>
-
-<!-- ═══════════════ PAGE 9: ASSESSMENT ═══════════════ -->
-<div id="page-assess" class="page">
-  <div class="a-wrap">
-    <h1 style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:800;color:var(--green-900);text-align:center;margin:18px 0 14px;letter-spacing:.5px;">Quiz</h1>
-    <div class="a-card">
-      <div id="a-quiz">
-        <div class="a-section-title">Section 1: Vocabulary MCQs (20 Questions)</div>
-        <p style="font-size:0.8rem;color:var(--text-muted);margin:4px 12px 10px;font-weight:600;">Choose the correct Urdu meaning.</p>
-        <div id="a-vocab-sec"></div>
-
-        <div class="a-section-title" style="margin-top:18px;">Section 2: Sentence Translation MCQs (20 Questions)</div>
-        <p style="font-size:0.8rem;color:var(--text-muted);margin:4px 12px 10px;font-weight:600;">Choose the correct English sentence.</p>
-        <div id="a-trans-sec"></div>
-
-        <div class="a-section-title" style="margin-top:18px;">Section 3: Self-Introduction — Fill in the Blanks</div>
-        <p style="font-size:0.8rem;color:var(--text-muted);margin:4px 12px 6px;font-weight:600;">Drag and drop the correct word into each blank.</p>
-        <div id="a-fill1-sec"></div>
-
-        <div class="a-section-title" style="margin-top:18px;">Section 4: Self-Introduction — Fill in the Blanks</div>
-        <p style="font-size:0.8rem;color:var(--text-muted);margin:4px 12px 6px;font-weight:600;">Drag and drop the correct word into each blank.</p>
-        <div id="a-fill2-sec"></div>
-
-        <div style="text-align:center;margin-top:28px;">
-          <button onclick="aSubmit()" class="a-opt-btn" style="background:var(--green-800);color:#fff;border:none;padding:14px 44px;font-size:1.1rem;border-radius:28px;">Submit the Quiz</button>
-        </div>
-      </div>
-      <div class="a-result" id="a-result">
-        <div class="score-circle" id="a-score">0/60</div>
-        <h2 id="a-result-msg" style="margin-bottom:5px;color:var(--text-dark);">Congratulations!</h2>
-        <p id="a-remarks" style="font-weight:800;color:var(--green-600);margin-bottom:14px;font-size:1.1rem;"></p>
-        <p style="margin-bottom:5px;">You have successfully completed the Quiz.</p>
-        <button onclick="aRetake()" class="retake-btn">🔄 Retake the Test</button>
-      </div>
-    </div>
-    <div class="a-bottom-nav" id="a-bottom-nav">
-    </div>
-  </div>
-</div>
 
 <!-- ═══════════════════════════════════════════════════
      JAVASCRIPT — ALL LOGIC
@@ -1763,59 +1684,36 @@ function showPage(id) {
 }
 
 function gotoPage(id) {
-  if (id === 'vocab') {
-    // Reset vocab — show Start overlay, user must click Start
-    vIdx = 0; vFlipped = false; vStarted = false;
-    document.getElementById('v-flashcard').classList.remove('flipped');
-    document.getElementById('v-start-overlay').style.display = '';
-    vRender(0);
-  } else if (id === 'sentences') {
-    // Reset sentences — show Start overlay, user must click Start
-    sIdx = 0; sSpeaking = false; sRender(false);
-    document.getElementById('s-start-overlay').style.display = '';
-    document.getElementById('s-en').textContent = '';
-    document.getElementById('s-ur').innerHTML = '';
-    document.getElementById('s-speak').textContent = '▶ Start';
-    document.getElementById('s-speak').onclick = sToggleStartStop;
-    document.getElementById('s-prev').style.visibility = 'hidden';
-    document.getElementById('s-next').style.visibility = 'hidden';
-  } else if (id === 'practice') {
-    // Reset practice — show Start overlay, user must click Start
-    pBuilt = false; pPlaying = false;
-    document.getElementById('p-overlay').style.display = '';
-    document.getElementById('tp-inner').innerHTML = '';
-    document.getElementById('tp-urdu').textContent = '';
-    document.getElementById('p-prev').disabled = true;
-    document.getElementById('p-play-btn').style.visibility = 'hidden';
-    pSetPlayIcon(false);
-    const pNB = document.getElementById('p-next');
-    pNB.textContent = 'Next \u25ba'; pNB.onclick = () => pGo(pCur + 1);
-    pCur = 0;
-  } else if (id === 'convo') {
-    // Reset convo — show Start overlay, user must click Start
-    cIdx = 0; cStarted = false;
-    document.getElementById('c-overlay').style.display = '';
-    document.getElementById('c-wave-container').style.display = 'none';
-    document.getElementById('c-q-row').style.display = 'none';
-    document.getElementById('c-r-bubble').style.display = 'none';
-    document.getElementById('c-q-en').innerHTML = '...';
-    document.getElementById('c-q-ur').innerHTML = '';
-    document.getElementById('c-nextBtn').disabled = true;
-    document.getElementById('c-prevBtn').disabled = true;
-  } else if (id === 'test') {
-    // Reset test — show Start screen, user must click Start
-    tIdx = 0;
-    document.getElementById('t-start').style.display = 'flex';
-    document.getElementById('t-content').style.display = 'none';
-    document.getElementById('t-congrats').style.display = 'none';
-    document.getElementById('t-instruction').style.visibility = 'visible';
-    document.getElementById('t-prog').style.width = '0%';
-    document.getElementById('t-prog-text').textContent = 'Questions completed: 0 / ' + tData.length;
-  }
   showPage(id);
 }
-function goHome() { showPage('landing'); }
+function goHome() { showCourse(); buildCourse(); showWeek(1); }
 function showCourse() { showPage('course'); buildCourse(); showWeek(1); }
+
+/* ─── WEEK SCROLL ARROWS (mobile) ─────────────────── */
+function weeksScrollBy(amount) {
+  var nav = document.getElementById('weeksNav');
+  nav.scrollBy({ left: amount, behavior: 'smooth' });
+}
+
+function weeksUpdateArrows() {
+  var nav = document.getElementById('weeksNav');
+  var lBtn = document.getElementById('weeks-scroll-left');
+  var rBtn = document.getElementById('weeks-scroll-right');
+  if (!nav || !lBtn || !rBtn) return;
+  var overflow = nav.scrollWidth > nav.clientWidth + 4;
+  var showLeft = overflow && nav.scrollLeft > 4;
+  var showRight = overflow && nav.scrollLeft < nav.scrollWidth - nav.clientWidth - 4;
+  lBtn.style.display = showLeft ? 'flex' : 'none';
+  rBtn.style.display = showRight ? 'flex' : 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var nav = document.getElementById('weeksNav');
+  if (nav) {
+    nav.addEventListener('scroll', weeksUpdateArrows);
+    window.addEventListener('resize', weeksUpdateArrows);
+  }
+});
 
 /* ─── PAGE NAV STRIP ──────────────────────────────── */
 // Ordered list of inner pages that show the nav strip
@@ -1917,9 +1815,9 @@ function buildCourse() {
       grid.appendChild(wl);
     }
     const card = document.createElement('div');
-    card.className='day-card'; card.dataset.week=week;
-    card.onclick = () => { if(d.day===1){ alert('Open Day 1 Lesson'); } else { gotoPage('day1'); } };
-    card.innerHTML=`<div class="day-header"><div class="day-badge"><span>DAY</span><strong>${d.day}</strong></div><div class="day-topic">${d.topic}</div></div>`;
+    card.className='day-card'; card.dataset.week=week; card.id='daycard-'+d.day;
+    card.onclick = () => { openDay(d.day); };
+    card.innerHTML=`<div class="day-header"><div class="day-badge" id="daybadge-${d.day}"><span>DAY</span><strong>${d.day}</strong></div><div class="day-topic">${d.topic}</div></div>`;
     grid.appendChild(card);
 
     if (d.day%7===0) {
@@ -1927,6 +1825,51 @@ function buildCourse() {
       rev.className='weekly-review'; rev.dataset.week=week;
       rev.innerHTML=`<div class="day-header"><div class="week-badge"><span>WEEK</span><strong>${week}</strong></div><div class="review-topic">Review &amp; Assessment</div></div>`;
       grid.appendChild(rev);
+    }
+  });
+  setTimeout(weeksUpdateArrows, 100);
+  loadProgress();
+}
+
+/* ─── DAY NAVIGATION (checks if file exists) ──────── */
+function openDay(dayNum) {
+  var url = dayNum + '.html';
+  fetch(url, { method: 'HEAD' })
+    .then(function(res) {
+      if (res.ok) {
+        window.location.href = url;
+      } else {
+        window.location.href = 'comingsoon.html';
+      }
+    })
+    .catch(function() {
+      window.location.href = 'comingsoon.html';
+    });
+}
+
+/* ─── PROGRESS (read/write localStorage) ──────────── */
+function getCompletedDays() {
+  try {
+    return JSON.parse(localStorage.getItem('emc_completed_days') || '[]');
+  } catch(e) { return []; }
+}
+
+function loadProgress() {
+  var completed = getCompletedDays();
+  var count = completed.length;
+  var total = 60;
+  document.getElementById('course-prog-count').textContent = count + ' / ' + total + ' Days';
+  document.getElementById('course-prog-fill').style.width = ((count / total) * 100) + '%';
+  // Mark completed day cards visually
+  completed.forEach(function(dayNum) {
+    var badge = document.getElementById('daybadge-' + dayNum);
+    var card = document.getElementById('daycard-' + dayNum);
+    if (badge) {
+      badge.style.background = 'var(--gold-mid)';
+      badge.innerHTML = '<span>DAY</span><strong>' + dayNum + '</strong><span style="font-size:0.7rem;">✓</span>';
+    }
+    if (card) {
+      card.style.borderColor = 'rgba(244,208,63,0.5)';
     }
   });
 }
@@ -1939,109 +1882,120 @@ function showWeek(w) {
     el.classList.toggle('visible', parseInt(el.dataset.week)===w);
   });
   window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(weeksUpdateArrows, 50);
 }
 
 /* ─── VOCABULARY ──────────────────────────────────── */
 const vocab = [
-  {word:"Introduce",urdu:"تعارف کروانا"},
-  {word:"Identity",urdu:"شناخت"},
-  {word:"Everyone",urdu:"سب لوگ"},
-  {word:"Myself",urdu:"خود"},
-  {word:"Person",urdu:"شخص"},
-  {word:"Student",urdu:"طالب علم"},
-  {word:"Member",urdu:"رکن"},
-  {word:"Beginner",urdu:"ابتدائی سیکھنے والا"},
-  {word:"Individual",urdu:"فرد"},
-  {word:"Friend",urdu:"دوست"},
-  {word:"Age",urdu:"عمر"},
-  {word:"Birthday",urdu:"سالگرہ"},
-  {word:"Month",urdu:"مہینہ"},
+  // Personal Pronouns (1–13)
+  {word:"I",urdu:"میں"},
+  {word:"You",urdu:"تم / آپ"},
+  {word:"He",urdu:"وہ (مذکر)"},
+  {word:"She",urdu:"وہ (مونث)"},
+  {word:"It",urdu:"یہ / وہ"},
+  {word:"We",urdu:"ہم"},
+  {word:"They",urdu:"وہ"},
+  {word:"My",urdu:"میرا / میری"},
+  {word:"Your",urdu:"تمہارا / آپ کا"},
+  {word:"His",urdu:"اس کا (مذکر)"},
+  {word:"Her",urdu:"اس کا (مونث)"},
+  {word:"Our",urdu:"ہمارا"},
+  {word:"Their",urdu:"ان کا"},
+  // Be Structure (14–19)
+  {word:"Am",urdu:"ہوں"},
+  {word:"Is",urdu:"ہے"},
+  {word:"Are",urdu:"ہیں"},
+  {word:"Be",urdu:"ہونا"},
+  {word:"Was",urdu:"تھا / تھی"},
+  {word:"Were",urdu:"تھے"},
+  // Family Members (20–29)
+  {word:"Family",urdu:"خاندان"},
   {word:"Brother",urdu:"بھائی"},
   {word:"Sister",urdu:"بہن"},
   {word:"Parents",urdu:"والدین"},
   {word:"Father",urdu:"والد"},
   {word:"Mother",urdu:"والدہ"},
-  {word:"Family",urdu:"خاندان"},
-  {word:"Single",urdu:"اکیلا / غیر شادی شدہ"},
-  {word:"Country",urdu:"ملک"},
-  {word:"City",urdu:"شہر"},
-  {word:"Village",urdu:"گاؤں"},
-  {word:"Town",urdu:"قصبہ"},
-  {word:"Home",urdu:"گھر"},
-  {word:"Place",urdu:"جگہ"},
-  {word:"Local",urdu:"مقامی"},
-  {word:"Mosque",urdu:"مسجد"},
-  {word:"Street",urdu:"گلی / سڑک"},
-  {word:"Area",urdu:"علاقہ"},
+  {word:"Grandfather",urdu:"دادا / نانا"},
+  {word:"Cousin",urdu:"کزن"},
+  {word:"Friend",urdu:"دوست"},
+  {word:"Classmate",urdu:"ہم جماعت"},
+  // Home, School & Pet (30–37)
+  {word:"Dog",urdu:"کتا"},
+  {word:"Cat",urdu:"بلی"},
+  {word:"House",urdu:"گھر"},
+  {word:"Book",urdu:"کتاب"},
   {word:"School",urdu:"اسکول"},
-  {word:"College",urdu:"کالج"},
-  {word:"University",urdu:"یونیورسٹی"},
-  {word:"Academy",urdu:"اکیڈمی"},
-  {word:"Class",urdu:"جماعت"},
-  {word:"Teacher",urdu:"استاد"},
-  {word:"Lesson",urdu:"سبق"},
-  {word:"Education",urdu:"تعلیم"},
-  {word:"Knowledge",urdu:"علم"},
-  {word:"Homework",urdu:"گھر کا کام"},
-  {word:"Work",urdu:"کام"},
-  {word:"Job",urdu:"ملازمت"},
-  {word:"Worker",urdu:"کارکن"},
-  {word:"Businessman",urdu:"کاروباری شخص"},
-  {word:"Office",urdu:"دفتر"},
-  {word:"Shop",urdu:"دکان"},
-  {word:"Career",urdu:"پیشہ"},
-  {word:"Future",urdu:"مستقبل"},
-  {word:"Goal",urdu:"مقصد"},
-  {word:"Success",urdu:"کامیابی"},
-  {word:"Friendly",urdu:"دوستانہ"},
-  {word:"Shy",urdu:"شرمیلا"},
-  {word:"Quiet",urdu:"خاموش"},
-  {word:"Kind",urdu:"مہربان"},
-  {word:"Honest",urdu:"ایماندار"},
-  {word:"Active",urdu:"متحرک"},
-  {word:"Smart",urdu:"ذہین"},
-  {word:"Tall",urdu:"لمبا"},
-  {word:"Simple",urdu:"سادہ"},
-  {word:"Confident",urdu:"پراعتماد"},
-  {word:"Speak",urdu:"بولنا"},
-  {word:"Learn",urdu:"سیکھنا"},
-  {word:"Practice",urdu:"مشق کرنا"},
-  {word:"Improve",urdu:"بہتر بنانا"},
-  {word:"Understand",urdu:"سمجھنا"},
-  {word:"Listen",urdu:"سننا"},
-  {word:"Repeat",urdu:"دہرانا"},
-  {word:"Answer",urdu:"جواب دینا"},
-  {word:"Question",urdu:"سوال"},
-  {word:"Conversation",urdu:"گفتگو"},
-  {word:"Music",urdu:"موسیقی"},
-  {word:"Sports",urdu:"کھیل"},
-  {word:"Reading",urdu:"مطالعہ"},
-  {word:"Writing",urdu:"لکھائی"},
-  {word:"Travel",urdu:"سفر"},
-  {word:"Walking",urdu:"چہل قدمی"},
-  {word:"Food",urdu:"کھانا"},
-  {word:"Tea",urdu:"چائے"},
-  {word:"Hobby",urdu:"مشغلہ"},
-  {word:"Interest",urdu:"دلچسپی"},
+  {word:"Class",urdu:"کلاس"},
+  {word:"Park",urdu:"پارک"},
+  {word:"Home",urdu:"گھر"},
+  // Daily Action Words (38–49)
   {word:"Live",urdu:"رہنا"},
-  {word:"Study",urdu:"پڑھنا"},
-  {word:"Stay",urdu:"رہنا / ٹھہرنا"},
-  {word:"Move",urdu:"منتقل ہونا"},
-  {word:"Grow",urdu:"بڑھنا"},
+  {word:"Like",urdu:"پسند کرنا"},
+  {word:"Love",urdu:"محبت کرنا"},
+  {word:"Read",urdu:"پڑھنا"},
+  {word:"Play",urdu:"کھیلنا"},
+  {word:"Learn",urdu:"سیکھنا"},
   {word:"Help",urdu:"مدد کرنا"},
-  {word:"Try",urdu:"کوشش کرنا"},
+  {word:"Care",urdu:"خیال رکھنا"},
+  {word:"Introduce",urdu:"تعارف کروانا"},
+  {word:"Meet",urdu:"ملنا"},
+  {word:"Tell",urdu:"بتانا"},
   {word:"Become",urdu:"بننا"},
-  {word:"Enjoy",urdu:"لطف اٹھانا"},
-  {word:"Good",urdu:"اچھا"},
-  {word:"Nice",urdu:"اچھا / خوشگوار"},
+  // Education & Jobs (50–53)
+  {word:"Student",urdu:"طالب علم"},
+  {word:"Teacher",urdu:"استاد"},
+  {word:"Doctor",urdu:"ڈاکٹر"},
+  {word:"Entrepreneur",urdu:"کاروباری شخص"},
+  // Time & Age (54–58)
+  {word:"Today",urdu:"آج"},
+  {word:"Day",urdu:"دن"},
+  {word:"Future",urdu:"مستقبل"},
+  {word:"Years",urdu:"سال"},
+  {word:"Old",urdu:"پرانا"},
+  // Question & Conversation Words (59–66)
+  {word:"Who",urdu:"کون"},
+  {word:"What",urdu:"کیا"},
+  {word:"Where",urdu:"کہاں"},
+  {word:"This",urdu:"یہ"},
+  {word:"These",urdu:"یہ (جمع)"},
+  {word:"From",urdu:"سے"},
+  {word:"Here",urdu:"یہاں"},
+  {word:"All",urdu:"سب"},
+  // Describing Words (67–100)
   {word:"Happy",urdu:"خوش"},
+  {word:"Kind",urdu:"مہربان"},
+  {word:"Smart",urdu:"ذہین"},
+  {word:"Friendly",urdu:"دوستانہ"},
+  {word:"Polite",urdu:"شائستہ"},
+  {word:"Honest",urdu:"ایماندار"},
+  {word:"Busy",urdu:"مصروف"},
+  {word:"Ready",urdu:"تیار"},
+  {word:"Tall",urdu:"لمبا"},
+  {word:"Beautiful",urdu:"خوبصورت"},
+  {word:"Big",urdu:"بڑا"},
+  {word:"Clean",urdu:"صاف"},
+  {word:"Cute",urdu:"پیارا"},
+  {word:"Loyal",urdu:"وفادار"},
+  {word:"Wise",urdu:"دانا"},
+  {word:"Loving",urdu:"محبت کرنے والا"},
+  {word:"Hardworking",urdu:"محنتی"},
+  {word:"Helpful",urdu:"مددگار"},
+  {word:"Funny",urdu:"مزاحیہ"},
+  {word:"Active",urdu:"متحرک"},
+  {word:"Good",urdu:"اچھا"},
+  {word:"Amazing",urdu:"شاندار"},
+  {word:"Strong",urdu:"مضبوط"},
+  {word:"Fast",urdu:"تیز"},
+  {word:"Slow",urdu:"سست"},
   {word:"Easy",urdu:"آسان"},
   {word:"Difficult",urdu:"مشکل"},
-  {word:"Fast",urdu:"تیز"},
-  {word:"Small",urdu:"چھوٹا"},
-  {word:"Big",urdu:"بڑا"},
-  {word:"Native",urdu:"مقامی / مادری"},
-  {word:"Rewarding",urdu:"فائدہ مند / اطمینان بخش"},
+  {word:"New",urdu:"نیا"},
+  {word:"Young",urdu:"جوان"},
+  {word:"Old",urdu:"پرانا / بوڑھا"},
+  {word:"Important",urdu:"اہم"},
+  {word:"Different",urdu:"مختلف"},
+  {word:"Same",urdu:"ایک جیسا"},
+  {word:"Simple",urdu:"سادہ"},
 ];
 
 const vGradients = [
@@ -2073,7 +2027,7 @@ function vRender(idx) {
   if (idx === vocab.length - 1) {
     vNextBtn.disabled = false;
     vNextBtn.textContent = 'Next ▶';
-    vNextBtn.onclick = () => { showPage('sentences'); };
+    vNextBtn.onclick = () => { gotoPage('sentences'); };
     document.getElementById('v-restart-btn').style.display = '';
   } else {
     vNextBtn.disabled = false;
@@ -2084,20 +2038,8 @@ function vRender(idx) {
   if (vStarted) setTimeout(()=>speak(v.word),300);
 }
 
-document.getElementById('v-flashcard').addEventListener('click',()=>{
-  if (!vStarted) return;
-  if (!vFlipped) {
-    // First tap: reveal meaning
-    vFlipped = true;
-    document.getElementById('v-flashcard').classList.add('flipped');
-    setTimeout(()=>speak(vocab[vIdx].urdu.split('/')[0].trim(),'ur-PK'),300);
-  } else {
-    // Second tap: advance to next word (meaning hidden on new card)
-    vNext();
-  }
-});
-function vNext(){if(vIdx<vocab.length-1){vIdx++;vFlipped=false;document.getElementById('v-flashcard').classList.remove('flipped');vRender(vIdx);}}
-function vPrev(){if(vIdx>0){vIdx--;vFlipped=false;document.getElementById('v-flashcard').classList.remove('flipped');vRender(vIdx);}}
+function vNext(){if(vIdx<vocab.length-1){vIdx++;vFlipped=false;vRender(vIdx);}}
+function vPrev(){if(vIdx>0){vIdx--;vFlipped=false;vRender(vIdx);}}
 function vRestart(){
   vIdx=0; vFlipped=false; vStarted=true;
   document.getElementById('v-flashcard').classList.remove('flipped');
@@ -2108,66 +2050,131 @@ synth.getVoices();
 
 /* ─── SENTENCES ───────────────────────────────────── */
 const phrases = [
-  {cat:"Greetings", en:"Hello, everyone.", ur:"ہیلو، سب لوگو۔"},
-  {cat:"Greetings", en:"Hi, I am Irfan.", ur:"ہائے، میں عرفان ہوں۔"},
-  {cat:"Greetings", en:"My name is Noman.", ur:"میرا نام نومان ہے۔"},
-  {cat:"Greetings", en:"Please call me Nomi.", ur:"براہ کرم مجھے نومی کہیں۔"},
-  {cat:"Greetings", en:"You can call me Nomi.", ur:"آپ مجھے نومی کہہ سکتے ہیں۔"},
-  {cat:"Greetings", en:"I am a student.", ur:"میں ایک طالب علم ہوں۔"},
-  {cat:"Greetings", en:"I am a new member.", ur:"میں ایک نئے رکن ہوں۔"},
-  {cat:"Greetings", en:"Nice to meet you all.", ur:"آپ سب سے مل کر خوشی ہوئی۔"},
-  {cat:"Greetings", en:"It is good to see you.", ur:"آپ کو دیکھ کر اچھا لگا۔"},
-  {cat:"Greetings", en:"I am happy to be here.", ur:"میں یہاں ہو کر خوش ہوں۔"},
-  {cat:"Location", en:"I am from Pakistan.", ur:"میں پاکستان سے ہوں۔"},
-  {cat:"Location", en:"I come from Peshawar.", ur:"میں پشاور سے آیا ہوں۔"},
-  {cat:"Location", en:"I live in Shergarh.", ur:"میں شیرگڑھ میں رہتا ہوں۔"},
-  {cat:"Location", en:"My home is in Mardan.", ur:"میرا گھر مردان میں ہے۔"},
-  {cat:"Location", en:"I live near the Mosque.", ur:"میں مسجد کے قریب رہتا ہوں۔"},
-  {cat:"Location", en:"I am local here.", ur:"میں یہاں کا مقامی ہوں۔"},
-  {cat:"Location", en:"I moved to Lahore last year.", ur:"میں پچھلے سال لاہور منتقل ہوا۔"},
-  {cat:"Location", en:"I live with my family.", ur:"میں اپنے خاندان کے ساتھ رہتا ہوں۔"},
-  {cat:"Location", en:"I stay in Islamabad.", ur:"میں اسلام آباد میں رہتا ہوں۔"},
-  {cat:"Location", en:"It is a nice place.", ur:"یہ ایک اچھی جگہ ہے۔"},
-  {cat:"Personal", en:"I am 14 years old.", ur:"میں 14 سال کا ہوں۔"},
-  {cat:"Personal", en:"I am 15.", ur:"میں 15 سال کا ہوں۔"},
-  {cat:"Personal", en:"My birthday is in August.", ur:"میری سالگرہ اگست میں ہے۔"},
-  {cat:"Personal", en:"I have two brothers.", ur:"میرے دو بھائی ہیں۔"},
-  {cat:"Personal", en:"I have one sister.", ur:"میری ایک بہن ہے۔"},
-  {cat:"Personal", en:"I am a father.", ur:"میں ایک والد ہوں۔"},
-  {cat:"Personal", en:"I am the only child.", ur:"میں اکلوتا بچہ ہوں۔"},
-  {cat:"Personal", en:"My family is very kind.", ur:"میرا خاندان بہت مہربان ہے۔"},
-  {cat:"Personal", en:"I am a tall person.", ur:"میں ایک لمبا شخص ہوں۔"},
-  {cat:"Personal", en:"I am a quiet person.", ur:"میں ایک خاموش شخص ہوں۔"},
-  {cat:"Work & Study", en:"I am a student.", ur:"میں ایک طالب علم ہوں۔"},
-  {cat:"Work & Study", en:"I work in a school.", ur:"میں اسکول میں کام کرتا ہوں۔"},
-  {cat:"Work & Study", en:"I work at a shop.", ur:"میں دکان پر کام کرتا ہوں۔"},
-  {cat:"Work & Study", en:"I stay at home.", ur:"میں گھر پر رہتا ہوں۔"},
-  {cat:"Work & Study", en:"I go to University.", ur:"میں یونیورسٹی جاتا ہوں۔"},
-  {cat:"Work & Study", en:"I study every day.", ur:"میں روز پڑھتا ہوں۔"},
-  {cat:"Work & Study", en:"My job is easy.", ur:"میری نوکری آسان ہے۔"},
-  {cat:"Work & Study", en:"I work with computers.", ur:"میں کمپیوٹر کے ساتھ کام کرتا ہوں۔"},
-  {cat:"Work & Study", en:"I am a hard worker.", ur:"میں بہت محنت کرتا ہوں۔"},
-  {cat:"Work & Study", en:"I want a good job.", ur:"میں ایک اچھی نوکری چاہتا ہوں۔"},
-  {cat:"Hobbies", en:"I like English.", ur:"مجھے انگریزی پسند ہے۔"},
-  {cat:"Hobbies", en:"I love music.", ur:"مجھے موسیقی سے محبت ہے۔"},
-  {cat:"Hobbies", en:"I enjoy sports.", ur:"مجھے کھیل سے لطف آتا ہے۔"},
-  {cat:"Hobbies", en:"I like to drink Tea.", ur:"مجھے چائے پینا پسند ہے۔"},
-  {cat:"Hobbies", en:"I enjoy Biryani.", ur:"مجھے بریانی پسند ہے۔"},
-  {cat:"Hobbies", en:"I like to walk.", ur:"مجھے چہل قدمی پسند ہے۔"},
-  {cat:"Hobbies", en:"I play Cricket.", ur:"میں کرکٹ کھیلتا ہوں۔"},
-  {cat:"Hobbies", en:"I watch TV at night.", ur:"میں رات کو ٹی وی دیکھتا ہوں۔"},
-  {cat:"Hobbies", en:"I like reading books.", ur:"مجھے کتابیں پڑھنا پسند ہے۔"},
-  {cat:"Hobbies", en:"I love to travel.", ur:"مجھے سفر کرنا بہت پسند ہے۔"},
-  {cat:"Goals", en:"I am a friendly person.", ur:"میں ایک دوستانہ شخص ہوں۔"},
-  {cat:"Goals", en:"I am a shy person.", ur:"میں ایک شرمیلا شخص ہوں۔"},
-  {cat:"Goals", en:"I want to speak English.", ur:"میں انگریزی بولنا چاہتا ہوں۔"},
-  {cat:"Goals", en:"I study for one hour.", ur:"میں ایک گھنٹہ پڑھتا ہوں۔"},
-  {cat:"Goals", en:"I want to learn fast.", ur:"میں جلدی سیکھنا چاہتا ہوں۔"},
-  {cat:"Goals", en:"I am ready to learn.", ur:"میں سیکھنے کے لیے تیار ہوں۔"},
-  {cat:"Goals", en:"Help me, please.", ur:"براہ کرم میری مدد کریں۔"},
-  {cat:"Goals", en:"I will try my best.", ur:"میں اپنی پوری کوشش کروں گا۔"},
-  {cat:"Goals", en:"Thank you very much.", ur:"آپ کا بہت شکریہ۔"},
-  {cat:"Goals", en:"That is all about me.", ur:"بس میرے بارے میں اتنا ہی۔"},
+  // What questions (1–50)
+  {cat:"What Questions", en:"What is your name?", ur:"آپ کا نام کیا ہے؟", ps:"ستا نوم څه دی؟"},
+  {cat:"What Questions", en:"My name is Ali.", ur:"میرا نام علی ہے۔", ps:"زما نوم علي دی۔"},
+  {cat:"What Questions", en:"What is this?", ur:"یہ کیا ہے؟", ps:"دا څه شی دی؟"},
+  {cat:"What Questions", en:"This is a pen.", ur:"یہ ایک قلم ہے۔", ps:"دا یو قلم دی۔"},
+  {cat:"What Questions", en:"What do you do?", ur:"آپ کیا کرتے ہو؟", ps:"ته څه کوې؟"},
+  {cat:"What Questions", en:"I am a student.", ur:"میں ایک طالب علم ہوں۔", ps:"زه زده کوونکی یم۔"},
+  {cat:"What Questions", en:"What is your favorite color?", ur:"آپ کا پسندیدہ رنگ کیا ہے؟", ps:"ستا خوښ رنګ کوم دی؟"},
+  {cat:"What Questions", en:"My favorite color is blue.", ur:"میرا پسندیدہ رنگ نیلا ہے۔", ps:"زما خوښ رنګ نیلي دی۔"},
+  {cat:"What Questions", en:"What is your favorite food?", ur:"آپ کا پسندیدہ کھانا کیا ہے؟", ps:"ستا خوښ خواړه کوم دي؟"},
+  {cat:"What Questions", en:"My favorite food is biryani.", ur:"میرا پسندیدہ کھانا بریانی ہے۔", ps:"زما خوښ خواړه بریاني دي۔"},
+  {cat:"What Questions", en:"What is your school name?", ur:"آپ کے مدرسے کا نام کیا ہے؟", ps:"ستا د سکول نوم څه دی؟"},
+  {cat:"What Questions", en:"My school name is ABC School.", ur:"میرا مدرسہ اے بی سی ہے۔", ps:"زما سکول ABC دی۔"},
+  {cat:"What Questions", en:"What is in your bag?", ur:"آپ کے بستے میں کیا ہے؟", ps:"ستا په بکس کې څه دي؟"},
+  {cat:"What Questions", en:"Books and pen are in my bag.", ur:"میرے بستے میں کتابیں اور قلم ہیں۔", ps:"زما په بکس کې کتابونه او قلمونه دي۔"},
+  {cat:"What Questions", en:"What are you doing?", ur:"آپ کیا کر رہے ہو؟", ps:"ته څه کوې؟"},
+  {cat:"What Questions", en:"I am studying.", ur:"میں پڑھ رہا ہوں۔", ps:"زه سبق وایم۔"},
+  {cat:"What Questions", en:"What is the time?", ur:"کتنا وقت ہوا ہے؟", ps:"څو بجې دي؟"},
+  {cat:"What Questions", en:"It is 10 o'clock.", ur:"دس بج گئے ہیں۔", ps:"لس بجې شوي دي۔"},
+  {cat:"What Questions", en:"What is your hobby?", ur:"آپ کا شوق کیا ہے؟", ps:"ستا شوق څه دی؟"},
+  {cat:"What Questions", en:"My hobby is reading.", ur:"میرا شوق مطالعہ ہے۔", ps:"زما شوق سبق لوستل دي۔"},
+  {cat:"What Questions", en:"What do you like?", ur:"آپ کو کیا پسند ہے؟", ps:"ته څه خوښوې؟"},
+  {cat:"What Questions", en:"I like football.", ur:"مجھے فٹبال پسند ہے۔", ps:"ما ته فوټبال ښه لګي۔"},
+  {cat:"What Questions", en:"What do you want?", ur:"آپ کیا چاہتے ہو؟", ps:"ته څه غواړې؟"},
+  {cat:"What Questions", en:"I want a pen.", ur:"مجھے ایک قلم چاہیے۔", ps:"ما ته یو قلم پکار دی۔"},
+  {cat:"What Questions", en:"What is your phone number?", ur:"آپ کا فون نمبر کیا ہے؟", ps:"ستا د موبایل نمبر څه دی؟"},
+  {cat:"What Questions", en:"My phone number is 123456789.", ur:"میرا فون نمبر 123456789 ہے۔", ps:"زما نمبر 123456789 دی۔"},
+  {cat:"What Questions", en:"What is your favorite subject?", ur:"آپ کا پسندیدہ مضمون کیا ہے؟", ps:"ستا خوښ سبجېکټ کوم دی؟"},
+  {cat:"What Questions", en:"My favorite subject is English.", ur:"میرا پسندیدہ مضمون انگریزی ہے۔", ps:"زما خوښ سبجېکټ انګلیسي دی۔"},
+  {cat:"What Questions", en:"What is your friend's name?", ur:"آپ کے دوست کا نام کیا ہے؟", ps:"ستا د ملګري نوم څه دی؟"},
+  {cat:"What Questions", en:"My friend's name is Ahmed.", ur:"میرے دوست کا نام احمد ہے۔", ps:"زما د ملګري نوم احمد دی۔"},
+  {cat:"What Questions", en:"What are you eating?", ur:"آپ کیا کھا رہے ہو؟", ps:"ته څه خوري؟"},
+  {cat:"What Questions", en:"I am eating rice.", ur:"میں چاول کھا رہا ہوں۔", ps:"زه وريجې خورم۔"},
+  {cat:"What Questions", en:"What is your dream?", ur:"آپ کا خواب کیا ہے؟", ps:"ستا خوب څه دی؟"},
+  {cat:"What Questions", en:"My dream is to become a teacher.", ur:"میرا خواب استاد بننا ہے۔", ps:"زما خوب استاد جوړېدل دي۔"},
+  {cat:"What Questions", en:"What is your age?", ur:"آپ کی عمر کیا ہے؟", ps:"ستا عمر څو دی؟"},
+  {cat:"What Questions", en:"I am 12 years old.", ur:"میری عمر بارہ سال ہے۔", ps:"زما عمر ۱۲ کاله دی۔"},
+  {cat:"What Questions", en:"What is your favorite sport?", ur:"آپ کا پسندیدہ کھیل کیا ہے؟", ps:"ستا خوښ لوبه کومه ده؟"},
+  {cat:"What Questions", en:"My favorite sport is cricket.", ur:"میرا پسندیدہ کھیل کرکٹ ہے۔", ps:"زما خوښ لوبه کرکټ ده۔"},
+  {cat:"What Questions", en:"What do you study?", ur:"آپ کیا پڑھتے ہو؟", ps:"ته څه لولې؟"},
+  {cat:"What Questions", en:"I study English and Math.", ur:"میں انگریزی اور ریاضی پڑھتا ہوں۔", ps:"زه انګلیسي او ریاضي لولم۔"},
+  {cat:"What Questions", en:"What is your father's name?", ur:"آپ کے والد کا نام کیا ہے؟", ps:"د ستا د پلار نوم څه دی؟"},
+  {cat:"What Questions", en:"My father's name is Ahmad.", ur:"میرے والد کا نام احمد ہے۔", ps:"زما د پلار نوم احمد دی۔"},
+  {cat:"What Questions", en:"What is your mother's name?", ur:"آپ کی والدہ کا نام کیا ہے؟", ps:"د ستا د مور نوم څه دی؟"},
+  {cat:"What Questions", en:"My mother's name is Fatima.", ur:"میری والدہ کا نام فاطمہ ہے۔", ps:"زما د مور نوم فاطمه دی۔"},
+  {cat:"What Questions", en:"What is your favorite animal?", ur:"آپ کا پسندیدہ جانور کیا ہے؟", ps:"ستا خوښ حیوان کوم دی؟"},
+  {cat:"What Questions", en:"My favorite animal is a cat.", ur:"میرا پسندیدہ جانور بلی ہے۔", ps:"زما خوښ حیوان پیشو ده۔"},
+  {cat:"What Questions", en:"What is your country name?", ur:"آپ کے ملک کا نام کیا ہے؟", ps:"ستا د وطن نوم څه دی؟"},
+  {cat:"What Questions", en:"My country name is Pakistan.", ur:"میرا ملک پاکستان ہے۔", ps:"زما وطن پاکستان دی۔"},
+  {cat:"What Questions", en:"What is your favorite place?", ur:"آپ کی پسندیدہ جگہ کیا ہے؟", ps:"ستا خوښه ځای کوم دی؟"},
+  {cat:"What Questions", en:"My favorite place is school.", ur:"میری پسندیدہ جگہ مدرسہ ہے۔", ps:"زما خوښه ځای سکول دی۔"},
+  // Who questions (51–70)
+  {cat:"Who Questions", en:"Who are you?", ur:"آپ کون ہیں؟", ps:"ته څوک یې؟"},
+  {cat:"Who Questions", en:"I am a student.", ur:"میں ایک طالب علم ہوں۔", ps:"زه زده کوونکی یم۔"},
+  {cat:"Who Questions", en:"Who is he?", ur:"وہ کون ہے؟", ps:"هغه څوک دی؟"},
+  {cat:"Who Questions", en:"He is my brother.", ur:"وہ میرا بھائی ہے۔", ps:"هغه زما ورور دی۔"},
+  {cat:"Who Questions", en:"Who is she?", ur:"وہ کون ہے؟", ps:"هغه څوک ده؟"},
+  {cat:"Who Questions", en:"She is my sister.", ur:"وہ میری بہن ہے۔", ps:"هغه زما خور ده۔"},
+  {cat:"Who Questions", en:"Who is your teacher?", ur:"آپ کے استاد کون ہیں؟", ps:"ستا استاد څوک دی؟"},
+  {cat:"Who Questions", en:"He is my teacher.", ur:"وہ میرے استاد ہیں۔", ps:"هغه زما استاد دی۔"},
+  {cat:"Who Questions", en:"Who is your friend?", ur:"آپ کا دوست کون ہے؟", ps:"ستا ملګری څوک دی؟"},
+  {cat:"Who Questions", en:"He is my friend.", ur:"وہ میرا دوست ہے۔", ps:"هغه زما ملګری دی۔"},
+  {cat:"Who Questions", en:"Who is calling you?", ur:"آپ کو کون فون کر رہا ہے؟", ps:"تا ته څوک زنګ وهي؟"},
+  {cat:"Who Questions", en:"My father is calling me.", ur:"میرے والد مجھے فون کر رہے ہیں۔", ps:"زما پلار راته زنګ وهي۔"},
+  {cat:"Who Questions", en:"Who is in the classroom?", ur:"جماعت میں کون ہے؟", ps:"په کلاس کې څوک دي؟"},
+  {cat:"Who Questions", en:"Students are in the classroom.", ur:"جماعت میں طلبہ موجود ہیں۔", ps:"په کلاس کې زده کوونکي دي۔"},
+  {cat:"Who Questions", en:"Who made this?", ur:"یہ کس نے بنایا ہے؟", ps:"دا چا جوړ کړي دي؟"},
+  {cat:"Who Questions", en:"My teacher made this.", ur:"یہ میرے استاد نے بنایا ہے۔", ps:"دا زما استاد جوړ کړي دي۔"},
+  {cat:"Who Questions", en:"Who is your favorite person?", ur:"آپ کا پسندیدہ انسان کون ہے؟", ps:"ستا خوښ انسان څوک دی؟"},
+  {cat:"Who Questions", en:"My mother is my favorite person.", ur:"میری والدہ میری پسندیدہ انسان ہیں۔", ps:"زما مور زما خوښه انسان ده۔"},
+  {cat:"Who Questions", en:"Who is absent today?", ur:"آج کون غیر حاضر ہے؟", ps:"نن څوک غیر حاضر دی؟"},
+  {cat:"Who Questions", en:"Ali is absent today.", ur:"علی آج غیر حاضر ہے۔", ps:"علي نن غیر حاضر دی۔"},
+  // Where questions (71–90)
+  {cat:"Where Questions", en:"Where are you?", ur:"آپ کہاں ہیں؟", ps:"ته چېرته یې؟"},
+  {cat:"Where Questions", en:"I am at home.", ur:"میں گھر پر ہوں۔", ps:"زه په کور کې یم۔"},
+  {cat:"Where Questions", en:"Where is your school?", ur:"آپ کا مدرسہ کہاں ہے؟", ps:"ستا سکول چېرته دی؟"},
+  {cat:"Where Questions", en:"My school is in Rawalpindi.", ur:"میرا مدرسہ راولپنڈی میں ہے۔", ps:"زما سکول په راولپنډۍ کې دی۔"},
+  {cat:"Where Questions", en:"Where do you live?", ur:"آپ کہاں رہتے ہیں؟", ps:"ته چېرته اوسیږې؟"},
+  {cat:"Where Questions", en:"I live in Islamabad.", ur:"میں اسلام آباد میں رہتا ہوں۔", ps:"زه په اسلام آباد کې اوسیږم۔"},
+  {cat:"Where Questions", en:"Where is your book?", ur:"آپ کی کتاب کہاں ہے؟", ps:"ستا کتاب چېرته دی؟"},
+  {cat:"Where Questions", en:"My book is on the table.", ur:"میری کتاب میز پر ہے۔", ps:"زما کتاب په مېز باندې دی۔"},
+  {cat:"Where Questions", en:"Where are you going?", ur:"آپ کہاں جا رہے ہیں؟", ps:"ته چېرته ځې؟"},
+  {cat:"Where Questions", en:"I am going to school.", ur:"میں مدرسے جا رہا ہوں۔", ps:"زه سکول ته ځم۔"},
+  {cat:"Where Questions", en:"Where is your friend?", ur:"آپ کا دوست کہاں ہے؟", ps:"ستا ملګری چېرته دی؟"},
+  {cat:"Where Questions", en:"My friend is at school.", ur:"میرا دوست مدرسے میں ہے۔", ps:"زما ملګری په سکول کې دی۔"},
+  {cat:"Where Questions", en:"Where do you study?", ur:"آپ کہاں پڑھتے ہیں؟", ps:"ته چېرته لولې؟"},
+  {cat:"Where Questions", en:"I study at school.", ur:"میں مدرسے میں پڑھتا ہوں۔", ps:"زه په سکول کې لولم۔"},
+  {cat:"Where Questions", en:"Where is the bathroom?", ur:"غسل خانہ کہاں ہے؟", ps:"باتخلا چېرته ده؟"},
+  {cat:"Where Questions", en:"The bathroom is there.", ur:"غسل خانہ وہاں ہے۔", ps:"باتخلا هلته ده۔"},
+  {cat:"Where Questions", en:"Where is your house?", ur:"آپ کا گھر کہاں ہے؟", ps:"ستا کور چېرته دی؟"},
+  {cat:"Where Questions", en:"My house is in the city.", ur:"میرا گھر شہر میں ہے۔", ps:"زما کور په ښار کې دی۔"},
+  {cat:"Where Questions", en:"Where are your shoes?", ur:"آپ کے جوتے کہاں ہیں؟", ps:"ستا بوټان چېرته دي؟"},
+  {cat:"Where Questions", en:"My shoes are under the bed.", ur:"میرے جوتے بستر کے نیچے ہیں۔", ps:"زما بوټان د کټ لاندې دي۔"},
+  // When questions (91–100)
+  {cat:"When Questions", en:"When is your birthday?", ur:"آپ کی سالگرہ کب ہے؟", ps:"ستا د زوکړې ورځ کله ده؟"},
+  {cat:"When Questions", en:"My birthday is in June.", ur:"میری سالگرہ جون میں ہے۔", ps:"زما د زوکړې ورځ په جون کې ده۔"},
+  {cat:"When Questions", en:"When do you go to school?", ur:"آپ مدرسے کب جاتے ہیں؟", ps:"ته سکول ته کله ځې؟"},
+  {cat:"When Questions", en:"I go to school at 8 o'clock.", ur:"میں آٹھ بجے مدرسے جاتا ہوں۔", ps:"زه اته بجې سکول ته ځم۔"},
+  {cat:"When Questions", en:"When do you sleep?", ur:"آپ کب سوتے ہیں؟", ps:"ته کله ویده کېږې؟"},
+  {cat:"When Questions", en:"I sleep at 10 o'clock.", ur:"میں دس بجے سوتا ہوں۔", ps:"زه لس بجې ویده کېږم۔"},
+  {cat:"When Questions", en:"When is the class?", ur:"جماعت کب ہوتی ہے؟", ps:"کلاس کله وي؟"},
+  {cat:"When Questions", en:"The class is in the morning.", ur:"جماعت صبح ہوتی ہے۔", ps:"کلاس سهار وي۔"},
+  {cat:"When Questions", en:"When do you eat lunch?", ur:"آپ دوپہر کا کھانا کب کھاتے ہیں؟", ps:"ته ډوډۍ کله خوري؟"},
+  {cat:"When Questions", en:"I eat lunch at 1 o'clock.", ur:"میں ایک بجے دوپہر کا کھانا کھاتا ہوں۔", ps:"زه په یوه بجه ډوډۍ خورم۔"},
+  // How questions (101–120)
+  {cat:"How Questions", en:"How are you?", ur:"آپ کیسے ہیں؟", ps:"ته څنګه یې؟"},
+  {cat:"How Questions", en:"I am fine.", ur:"میں ٹھیک ہوں۔", ps:"زه ښه یم۔"},
+  {cat:"How Questions", en:"How old are you?", ur:"آپ کی عمر کیا ہے؟", ps:"ستا عمر څو دی؟"},
+  {cat:"How Questions", en:"I am 12 years old.", ur:"میری عمر بارہ سال ہے۔", ps:"زما عمر ۱۲ کاله دی۔"},
+  {cat:"How Questions", en:"How do you go to school?", ur:"آپ مدرسے کیسے جاتے ہیں؟", ps:"ته سکول ته څنګه ځې؟"},
+  {cat:"How Questions", en:"I go to school by bus.", ur:"میں بس کے ذریعے جاتا ہوں۔", ps:"زه د بس په واسطه ځم۔"},
+  {cat:"How Questions", en:"How is the weather?", ur:"موسم کیسا ہے؟", ps:"موسم څنګه دی؟"},
+  {cat:"How Questions", en:"The weather is sunny.", ur:"موسم دھوپ والا ہے۔", ps:"موسم ښه دی / لمر دی۔"},
+  {cat:"How Questions", en:"How do you feel?", ur:"آپ کیسا محسوس کر رہے ہیں؟", ps:"ته څنګه احساس کوې؟"},
+  {cat:"How Questions", en:"I feel happy.", ur:"میں خوش ہوں۔", ps:"زه خوشحاله یم۔"},
+  {cat:"How Questions", en:"How do you study?", ur:"آپ کیسے پڑھتے ہیں؟", ps:"ته څنګه لولې؟"},
+  {cat:"How Questions", en:"I study with focus.", ur:"میں توجہ سے پڑھتا ہوں۔", ps:"زه په توجه سره لولم۔"},
+  {cat:"How Questions", en:"How is your day?", ur:"آپ کا دن کیسا ہے؟", ps:"ستا ورځ څنګه ده؟"},
+  {cat:"How Questions", en:"My day is good.", ur:"میرا دن اچھا ہے۔", ps:"زما ورځ ښه ده۔"},
+  {cat:"How Questions", en:"How do you come here?", ur:"آپ یہاں کیسے آتے ہیں؟", ps:"ته دلته څنګه راځې؟"},
+  {cat:"How Questions", en:"I come here by car.", ur:"میں گاڑی کے ذریعے آتا ہوں۔", ps:"زه د موټر په واسطه راځم۔"},
+  {cat:"How Questions", en:"How do you learn English?", ur:"آپ انگریزی کیسے سیکھتے ہیں؟", ps:"ته انګلیسي څنګه زده کوې؟"},
+  {cat:"How Questions", en:"I learn English by practice.", ur:"میں مشق کے ذریعے سیکھتا ہوں۔", ps:"زه د تمرین په واسطه زده کوم۔"},
+  {cat:"How Questions", en:"How is your family?", ur:"آپ کا گھر کیسا ہے؟", ps:"ستا کور څنګه دی؟"},
+  {cat:"How Questions", en:"My family is good.", ur:"میرا گھر ٹھیک ہے۔", ps:"زما کور ښه دی۔"},
 ];
 let sIdx=0;
 let sSpeaking = false;
@@ -2193,37 +2200,27 @@ function sStart() {
   document.getElementById('s-prev').style.visibility = 'visible';
   document.getElementById('s-next').style.visibility = 'visible';
   sSpeaking = true;
-  document.getElementById('s-speak').textContent = '⏹ Stop';
   sRender(true);
 }
 function sRender(speak_=false) {
   const p=phrases[sIdx];
   document.getElementById('s-en').textContent=p.en;
   document.getElementById('s-ur').innerHTML=`<strong>${p.ur}</strong>`;
+  document.getElementById('s-ps').innerHTML=`<strong>${p.ps}</strong>`;
   document.getElementById('s-cat').textContent=p.cat;
   document.getElementById('s-counter').textContent=`${sIdx+1} / ${phrases.length}`;
   document.getElementById('s-prog').style.width=`${((sIdx+1)/phrases.length)*100}%`;
   document.getElementById('s-prev').disabled=sIdx===0;
   const sNextBtn = document.getElementById('s-next');
-  const speakBtn = document.getElementById('s-speak');
   if (sIdx === phrases.length - 1) {
     sNextBtn.disabled = false;
     sNextBtn.textContent = 'Next ▶';
-    sNextBtn.onclick = () => { showPage('practice'); };
+    sNextBtn.onclick = () => { gotoPage('practice'); };
     sSpeaking = false;
-    speakBtn.textContent = '↺ Start Again';
-    speakBtn.onclick = () => {
-      sIdx=0; sSpeaking=true; speakBtn.textContent='⏹ Stop';
-      speakBtn.onclick = sToggleStartStop;
-      const fc=document.getElementById('s-flashcard');
-      fc.classList.add('animating');
-      setTimeout(()=>{sRender(true);fc.classList.remove('animating');},50);
-    };
   } else {
     sNextBtn.disabled = false;
     sNextBtn.textContent = 'Next ▶';
     sNextBtn.onclick = () => sNav(1);
-    speakBtn.onclick = sToggleStartStop;
   }
   if(speak_ && sSpeaking) speak(p.en);
 }
@@ -2237,66 +2234,156 @@ function sSpeak(){speak(phrases[sIdx].en);}
 
 /* ─── PRACTICE (Teleprompter) ─────────────────────── */
 const chunks=[
-  {text:"Hello!", urdu:"ہیلو!"},
-  {text:"Hi there.", urdu:"ہائے وہاں۔"},
-  {text:"Good morning.", urdu:"صبح بخیر۔"},
-  {text:"My name is...", urdu:"میرا نام ہے..."},
-  {text:"Irfan Khan.", urdu:"عرفان خان۔"},
-  {text:"You can...", urdu:"آپ کر سکتے ہیں..."},
-  {text:"call me...", urdu:"مجھے کہیں..."},
-  {text:"Irfan.", urdu:"عرفان۔"},
-  {text:"Nice to...", urdu:"خوشی ہوئی..."},
-  {text:"meet you.", urdu:"آپ سے ملنا۔"},
-  {text:"I am...", urdu:"میں ہوں..."},
-  {text:"from Pakistan.", urdu:"پاکستان سے۔"},
-  {text:"I live...", urdu:"میں رہتا ہوں..."},
-  {text:"in Shergarh.", urdu:"شیرگڑھ میں۔"},
-  {text:"It is...", urdu:"یہ ہے..."},
-  {text:"a busy town...", urdu:"ایک مصروف قصبہ..."},
-  {text:"near Mardan.", urdu:"مردان کے قریب۔"},
-  {text:"I grew up...", urdu:"میں پلا بڑھا..."},
-  {text:"in this city.", urdu:"اس شہر میں۔"},
-  {text:"I love it here.", urdu:"مجھے یہاں بہت پسند ہے۔"},
-  {text:"I am...", urdu:"میں ہوں..."},
-  {text:"a teacher.", urdu:"ایک استاد۔"},
-  {text:"I work...", urdu:"میں کام کرتا ہوں..."},
-  {text:"at an academy.", urdu:"ایک اکیڈمی میں۔"},
-  {text:"I teach...", urdu:"میں پڑھاتا ہوں..."},
-  {text:"English lessons.", urdu:"انگریزی کے سبق۔"},
-  {text:"I enjoy...", urdu:"مجھے لطف آتا ہے..."},
-  {text:"my work...", urdu:"میرا کام..."},
-  {text:"very much.", urdu:"بہت زیادہ۔"},
-  {text:"It is rewarding.", urdu:"یہ فائدہ مند ہے۔"},
-  {text:"I have...", urdu:"میرے پاس ہے..."},
-  {text:"a small family.", urdu:"ایک چھوٹا خاندان۔"},
-  {text:"I live...", urdu:"میں رہتا ہوں..."},
-  {text:"with my parents.", urdu:"اپنے والدین کے ساتھ۔"},
-  {text:"I have...", urdu:"میرے پاس ہیں..."},
-  {text:"two brothers...", urdu:"دو بھائی..."},
-  {text:"and one sister.", urdu:"اور ایک بہن۔"},
-  {text:"We spend...", urdu:"ہم گزارتے ہیں..."},
-  {text:"time together...", urdu:"وقت ایک ساتھ..."},
-  {text:"every evening.", urdu:"ہر شام۔"},
-  {text:"In my...", urdu:"میرے..."},
-  {text:"free time...", urdu:"فارغ وقت میں..."},
-  {text:"I like...", urdu:"مجھے پسند ہے..."},
-  {text:"to play cricket.", urdu:"کرکٹ کھیلنا۔"},
-  {text:"I also...", urdu:"میں بھی..."},
-  {text:"enjoy reading.", urdu:"پڑھنا پسند کرتا ہوں۔"},
-  {text:"My favorite...", urdu:"میری پسندیدہ..."},
-  {text:"food is...", urdu:"خوراک ہے..."},
-  {text:"Chicken Biryani.", urdu:"چکن بریانی۔"},
-  {text:"It is delicious!", urdu:"یہ لذیذ ہے!"},
-  {text:"Currently...", urdu:"ابھی..."},
-  {text:"I am learning...", urdu:"میں سیکھ رہا ہوں..."},
-  {text:"to speak English...", urdu:"انگریزی بولنا..."},
-  {text:"like a native.", urdu:"مقامی کی طرح۔"},
-  {text:"I practice...", urdu:"میں مشق کرتا ہوں..."},
-  {text:"every single day.", urdu:"ہر ایک دن۔"},
-  {text:"Thank you...", urdu:"شکریہ..."},
-  {text:"for listening...", urdu:"سننے کے لیے..."},
-  {text:"to my story.", urdu:"میری کہانی۔"},
-  {text:"Have a nice day!", urdu:"آپ کا دن اچھا گزرے!"},
+
+  // ═══ 1. Ahmad — Greeting & Self-Introduction ═══
+  {text:"── Ahmad: Greeting & Self-Introduction ──", urdu:"احمد: سلام اور اپنا تعارف"},
+
+  {text:"Hello", urdu:"ہیلو"},
+  {text:"Hello everyone!", urdu:"ہیلو سب کو!"},
+
+  {text:"Today,", urdu:"آج،"},
+  {text:"Today, I will introduce", urdu:"آج، میں تعارف کروانا چاہتا ہوں"},
+  {text:"Today, I will introduce myself and my family.", urdu:"آج، میں اپنا اور اپنے خاندان کا تعارف کروانا چاہتا ہوں۔"},
+
+  {text:"My name", urdu:"میرا نام"},
+  {text:"My name is Ahmad.", urdu:"میرا نام احمد ہے۔"},
+
+  {text:"I am", urdu:"میں ہوں"},
+  {text:"I am 13 years old.", urdu:"میں 13 سال کا ہوں۔"},
+
+  {text:"I am", urdu:"میں ہوں"},
+  {text:"I am from Pakistan.", urdu:"میں پاکستان سے ہوں۔"},
+
+  {text:"I live", urdu:"میں رہتا ہوں"},
+  {text:"I live in Islamabad.", urdu:"میں اسلام آباد میں رہتا ہوں۔"},
+
+  {text:"I am", urdu:"میں ہوں"},
+  {text:"I am a student.", urdu:"میں ایک طالب علم ہوں۔"},
+
+  {text:"I like", urdu:"مجھے پسند ہے"},
+  {text:"I like reading books", urdu:"مجھے کتابیں پڑھنا پسند ہے"},
+  {text:"I like reading books and playing cricket.", urdu:"مجھے کتابیں پڑھنا اور کرکٹ کھیلنا پسند ہے۔"},
+
+  {text:"I am", urdu:"میں ہوں"},
+  {text:"I am talkative", urdu:"میں باتونی ہوں"},
+  {text:"I am talkative and friendly.", urdu:"میں باتونی اور دوستانہ ہوں۔"},
+
+  {text:"In the future,", urdu:"مستقبل میں،"},
+  {text:"In the future, I want", urdu:"مستقبل میں، میں چاہتا ہوں"},
+  {text:"In the future, I want to become", urdu:"مستقبل میں، میں بننا چاہتا ہوں"},
+  {text:"In the future, I want to become an entrepreneur.", urdu:"مستقبل میں، میں ایک کاروباری شخص بننا چاہتا ہوں۔"},
+
+  // ═══ 2. Ali — Brother ═══
+  {text:"── Ali: Brother ──", urdu:"علی: بھائی"},
+
+  {text:"This is", urdu:"یہ ہے"},
+  {text:"This is my brother.", urdu:"یہ میرا بھائی ہے۔"},
+
+  {text:"His name", urdu:"اس کا نام"},
+  {text:"His name is Ali.", urdu:"اس کا نام علی ہے۔"},
+
+  {text:"He is", urdu:"وہ ہے"},
+  {text:"He is 10 years old.", urdu:"وہ 10 سال کا ہے۔"},
+
+  {text:"He is", urdu:"وہ ہے"},
+  {text:"He is a student.", urdu:"وہ ایک طالب علم ہے۔"},
+
+  {text:"He likes", urdu:"اسے پسند ہے"},
+  {text:"He likes football.", urdu:"اسے فٹبال پسند ہے۔"},
+
+  {text:"He is", urdu:"وہ ہے"},
+  {text:"He is active", urdu:"وہ متحرک ہے"},
+  {text:"He is active and funny.", urdu:"وہ متحرک اور مزاحیہ ہے۔"},
+
+  // ═══ 3. Ayesha — Sister ═══
+  {text:"── Ayesha: Sister ──", urdu:"عائشہ: بہن"},
+
+  {text:"This is", urdu:"یہ ہے"},
+  {text:"This is my sister.", urdu:"یہ میری بہن ہے۔"},
+
+  {text:"Her name", urdu:"اس کا نام"},
+  {text:"Her name is Ayesha.", urdu:"اس کا نام عائشہ ہے۔"},
+
+  {text:"She is", urdu:"وہ ہے"},
+  {text:"She is 8 years old.", urdu:"وہ 8 سال کی ہے۔"},
+
+  {text:"She is", urdu:"وہ ہے"},
+  {text:"She is a student.", urdu:"وہ ایک طالب علمہ ہے۔"},
+
+  {text:"She likes", urdu:"اسے پسند ہے"},
+  {text:"She likes drawing.", urdu:"اسے ڈرائنگ پسند ہے۔"},
+
+  {text:"She is", urdu:"وہ ہے"},
+  {text:"She is kind", urdu:"وہ مہربان ہے"},
+  {text:"She is kind and smart.", urdu:"وہ مہربان اور ذہین ہے۔"},
+
+  // ═══ 4. Parents ═══
+  {text:"── Parents ──", urdu:"والدین"},
+
+  {text:"These are", urdu:"یہ ہیں"},
+  {text:"These are my parents.", urdu:"یہ میرے والدین ہیں۔"},
+
+  {text:"They are", urdu:"وہ ہیں"},
+  {text:"They are very loving.", urdu:"وہ بہت محبت کرنے والے ہیں۔"},
+
+  {text:"They are", urdu:"وہ ہیں"},
+  {text:"They are kind", urdu:"وہ مہربان ہیں"},
+  {text:"They are kind and hardworking.", urdu:"وہ مہربان اور محنتی ہیں۔"},
+
+  {text:"They care", urdu:"وہ خیال رکھتے ہیں"},
+  {text:"They care for our family.", urdu:"وہ ہمارے خاندان کا خیال رکھتے ہیں۔"},
+
+  {text:"They help us", urdu:"وہ ہماری مدد کرتے ہیں"},
+  {text:"They help us every day.", urdu:"وہ ہماری ہر روز مدد کرتے ہیں۔"},
+
+  // ═══ 5. Grandfather ═══
+  {text:"── Grandfather ──", urdu:"دادا"},
+
+  {text:"This is", urdu:"یہ ہیں"},
+  {text:"This is my grandfather.", urdu:"یہ میرے دادا ہیں۔"},
+
+  {text:"He is", urdu:"وہ ہیں"},
+  {text:"He is old", urdu:"وہ بزرگ ہیں"},
+  {text:"He is old and wise.", urdu:"وہ بزرگ اور دانا ہیں۔"},
+
+  {text:"He is", urdu:"وہ ہیں"},
+  {text:"He is very kind.", urdu:"وہ بہت مہربان ہیں۔"},
+
+  {text:"He tells us", urdu:"وہ ہمیں سناتے ہیں"},
+  {text:"He tells us stories.", urdu:"وہ ہمیں کہانیاں سناتے ہیں۔"},
+
+  // ═══ 6. Dog (Max) ═══
+  {text:"── Dog: Max ──", urdu:"کتا: میکس"},
+
+  {text:"This is", urdu:"یہ ہے"},
+  {text:"This is my dog.", urdu:"یہ میرا کتا ہے۔"},
+
+  {text:"Its name", urdu:"اس کا نام"},
+  {text:"Its name is Max.", urdu:"اس کا نام میکس ہے۔"},
+
+  {text:"It is", urdu:"یہ ہے"},
+  {text:"It is cute", urdu:"یہ پیارا ہے"},
+  {text:"It is cute and loyal.", urdu:"یہ پیارا اور وفادار ہے۔"},
+
+  {text:"It likes", urdu:"اسے پسند ہے"},
+  {text:"It likes to play.", urdu:"اسے کھیلنا پسند ہے۔"},
+
+  // ═══ 7. House ═══
+  {text:"── House ──", urdu:"گھر"},
+
+  {text:"This is", urdu:"یہ ہے"},
+  {text:"This is my house.", urdu:"یہ میرا گھر ہے۔"},
+
+  {text:"It is", urdu:"یہ ہے"},
+  {text:"It is beautiful.", urdu:"یہ خوبصورت ہے۔"},
+
+  {text:"It is", urdu:"یہ ہے"},
+  {text:"It is big", urdu:"یہ بڑا ہے"},
+  {text:"It is big and clean.", urdu:"یہ بڑا اور صاف ہے۔"},
+
+  {text:"I love", urdu:"مجھے پیار ہے"},
+  {text:"I love my house.", urdu:"مجھے اپنے گھر سے پیار ہے۔"},
+
 ];
 
 const P_ROW_H=64;
@@ -2327,6 +2414,13 @@ function pGo(idx, sp=true) {
   document.querySelectorAll('.tp-row').forEach((r,i)=>r.classList.toggle('active',i===pCur));
   document.getElementById('p-prev').disabled=pCur===0;
   document.getElementById('tp-urdu').textContent=chunks[pCur].urdu;
+  // update progress bar
+  (function(){
+    var fill = document.getElementById('p-prog-fill');
+    var text = document.getElementById('p-prog-text');
+    if(fill) fill.style.width = ((pCur+1)/chunks.length*100)+'%';
+    if(text) text.textContent = (pCur+1)+' / '+chunks.length;
+  })();
   document.getElementById('tp-track').scrollTo({top:pCur*P_ROW_H,behavior:'smooth'});
   if(sp && pPlaying) {
     synth.cancel();
@@ -2379,42 +2473,47 @@ function pStart() {
   document.getElementById('p-play-btn').style.visibility = 'visible';
   document.getElementById('p-prev').style.visibility = 'visible';
   document.getElementById('p-next').style.visibility = 'visible';
+  document.getElementById('p-progress-wrap').style.display = 'block';
   pBuild();
   pGo(0, false);
 }
 
 /* ─── CONVERSATION ─────────────────────────────────── */
 const convo=[
-  {qe:"Hi! How are you?", qu:"ہائے! آپ کیسے ہیں؟", re:"I am fine, thank you.", ru:"میں ٹھیک ہوں، شکریہ۔"},
-  {qe:"What is your name?", qu:"آپ کا نام کیا ہے؟", re:"My name is Zeeshan Ali.", ru:"میرا نام ذیشان علی ہے۔"},
-  {qe:"Can I call you Zeeshan?", qu:"کیا میں آپ کو ذیشان کہہ سکتا ہوں؟", re:"Yes, please call me Zeeshan.", ru:"ہاں، براہ کرم مجھے ذیشان کہیں۔"},
+  // Basic Introduction
+  {qe:"What is your name?", qu:"آپ کا نام کیا ہے؟", re:"My name is Ahmad.", ru:"میرا نام احمد ہے۔"},
   {qe:"Where are you from?", qu:"آپ کہاں سے ہیں؟", re:"I am from Pakistan.", ru:"میں پاکستان سے ہوں۔"},
-  {qe:"Which city is your home?", qu:"آپ کا گھر کس شہر میں ہے؟", re:"My home is in Shergarh.", ru:"میرا گھر شیرگڑھ میں ہے۔"},
-  {qe:"Is it a big town?", qu:"کیا یہ ایک بڑا قصبہ ہے؟", re:"No, it is a small town.", ru:"نہیں، یہ ایک چھوٹا قصبہ ہے۔"},
-  {qe:"Do you like Shergarh?", qu:"کیا آپ کو شیرگڑھ پسند ہے؟", re:"Yes, I love my town.", ru:"ہاں، مجھے اپنا قصبہ بہت پسند ہے۔"},
-  {qe:"How old are you?", qu:"آپ کی عمر کیا ہے؟", re:"I am 16 years old.", ru:"میں 16 سال کا ہوں۔"},
-  {qe:"When is your birthday?", qu:"آپ کی سالگرہ کب ہے؟", re:"My birthday is in August.", ru:"میری سالگرہ اگست میں ہے۔"},
-  {qe:"Are you a teacher?", qu:"کیا آپ استاد ہیں؟", re:"No, I am a student.", ru:"نہیں، میں ایک طالب علم ہوں۔"},
-  {qe:"Where do you study?", qu:"آپ کہاں پڑھتے ہیں؟", re:"I study at the Government School.", ru:"میں گورنمنٹ اسکول میں پڑھتا ہوں۔"},
-  {qe:"Do you go to class every day?", qu:"کیا آپ ہر روز کلاس جاتے ہیں؟", re:"Yes, I study six days a week.", ru:"ہاں، میں ہفتے میں چھ دن پڑھتا ہوں۔"},
-  {qe:"Is your study difficult?", qu:"کیا آپ کا مطالعہ مشکل ہے؟", re:"No, my lessons are very easy.", ru:"نہیں، میرے سبق بہت آسان ہیں۔"},
-  {qe:"Are you married?", qu:"کیا آپ شادی شدہ ہیں؟", re:"No, I am single.", ru:"نہیں، میں غیر شادی شدہ ہوں۔"},
-  {qe:"Do you have brothers?", qu:"کیا آپ کے بھائی ہیں؟", re:"Yes, I have two brothers.", ru:"ہاں، میرے دو بھائی ہیں۔"},
-  {qe:"Do you have sisters?", qu:"کیا آپ کی بہنیں ہیں؟", re:"I have one sister.", ru:"میری ایک بہن ہے۔"},
-  {qe:"Who do you live with?", qu:"آپ کس کے ساتھ رہتے ہیں؟", re:"I live with my parents.", ru:"میں اپنے والدین کے ساتھ رہتا ہوں۔"},
-  {qe:"Is your family big?", qu:"کیا آپ کا خاندان بڑا ہے؟", re:"No, it is a small family.", ru:"نہیں، یہ ایک چھوٹا خاندان ہے۔"},
-  {qe:"Do you have a car?", qu:"کیا آپ کے پاس گاڑی ہے؟", re:"No, I have a bike.", ru:"نہیں، میرے پاس موٹر سائیکل ہے۔"},
-  {qe:"What is your favorite color?", qu:"آپ کا پسندیدہ رنگ کیا ہے؟", re:"My favorite color is green.", ru:"میرا پسندیدہ رنگ سبز ہے۔"},
-  {qe:"Do you like Pakistani food?", qu:"کیا آپ کو پاکستانی کھانا پسند ہے؟", re:"Yes, I love Biryani.", ru:"ہاں، مجھے بریانی بہت پسند ہے۔"},
-  {qe:"Do you drink tea?", qu:"کیا آپ چائے پیتے ہیں؟", re:"Yes, I drink tea every day.", ru:"ہاں، میں ہر روز چائے پیتا ہوں۔"},
-  {qe:"What is your hobby?", qu:"آپ کا مشغلہ کیا ہے؟", re:"I like to play cricket.", ru:"مجھے کرکٹ کھیلنا پسند ہے۔"},
-  {qe:"Do you like reading?", qu:"کیا آپ کو پڑھنا پسند ہے؟", re:"Yes, I read my books at night.", ru:"ہاں، میں رات کو اپنی کتابیں پڑھتا ہوں۔"},
-  {qe:"Can you swim?", qu:"کیا آپ تیر سکتے ہیں؟", re:"No, I cannot swim.", ru:"نہیں، میں نہیں تیر سکتا۔"},
-  {qe:"Why do you learn English?", qu:"آپ انگریزی کیوں سیکھتے ہیں؟", re:"I want to speak like a native.", ru:"میں مقامی کی طرح بولنا چاہتا ہوں۔"},
-  {qe:"Is English hard for you?", qu:"کیا انگریزی آپ کے لیے مشکل ہے؟", re:"It is hard, but I am trying.", ru:"یہ مشکل ہے، لیکن میں کوشش کر رہا ہوں۔"},
-  {qe:"Are you tired today?", qu:"کیا آپ آج تھکے ہوئے ہیں؟", re:"No, I am very active.", ru:"نہیں، میں بہت متحرک ہوں۔"},
-  {qe:"What time is it now?", qu:"ابھی کیا وقت ہے؟", re:"It is 7:00 PM now.", ru:"ابھی شام کے 7 بجے ہیں۔"},
-  {qe:"Are you ready for Day 3?", qu:"کیا آپ دن 3 کے لیے تیار ہیں؟", re:"Yes, I am ready!", ru:"ہاں، میں تیار ہوں!"},
+  {qe:"Where do you live?", qu:"آپ کہاں رہتے ہیں؟", re:"I live in Islamabad.", ru:"میں اسلام آباد میں رہتا ہوں۔"},
+  {qe:"How old are you?", qu:"آپ کی عمر کیا ہے؟", re:"I am 13 years old.", ru:"میں 13 سال کا ہوں۔"},
+  {qe:"Are you a student?", qu:"کیا آپ طالب علم ہیں؟", re:"Yes, I am a student.", ru:"جی ہاں، میں طالب علم ہوں۔"},
+  {qe:"What do you like to do?", qu:"آپ کیا کرنا پسند کرتے ہیں؟", re:"I like reading books and playing cricket.", ru:"مجھے کتابیں پڑھنا اور کرکٹ کھیلنا پسند ہے۔"},
+  // Family Introduction
+  {qe:"Do you have a brother?", qu:"کیا آپ کا بھائی ہے؟", re:"Yes, I have a brother.", ru:"جی ہاں، میرا بھائی ہے۔"},
+  {qe:"What is your brother's name?", qu:"آپ کے بھائی کا نام کیا ہے؟", re:"His name is Ali.", ru:"اس کا نام علی ہے۔"},
+  {qe:"How old is your brother?", qu:"آپ کا بھائی کتنے سال کا ہے؟", re:"He is 10 years old.", ru:"وہ 10 سال کا ہے۔"},
+  {qe:"What does your brother like?", qu:"آپ کا بھائی کیا پسند کرتا ہے؟", re:"He likes football.", ru:"وہ فٹبال پسند کرتا ہے۔"},
+  {qe:"Do you have a sister?", qu:"کیا آپ کی بہن ہے؟", re:"Yes, I have a sister.", ru:"جی ہاں، میری بہن ہے۔"},
+  {qe:"What is your sister's name?", qu:"آپ کی بہن کا نام کیا ہے؟", re:"Her name is Ayesha.", ru:"اس کا نام عائشہ ہے۔"},
+  {qe:"What does she like?", qu:"وہ کیا پسند کرتی ہے؟", re:"She likes drawing.", ru:"وہ ڈرائنگ پسند کرتی ہے۔"},
+  {qe:"Tell me about your parents.", qu:"اپنے والدین کے بارے میں بتائیں۔", re:"They are kind and hardworking.", ru:"وہ مہربان اور محنتی ہیں۔"},
+  {qe:"What do your parents do?", qu:"آپ کے والدین کیا کرتے ہیں؟", re:"They take care of our family.", ru:"وہ ہمارے خاندان کا خیال رکھتے ہیں۔"},
+  {qe:"Do you love your family?", qu:"کیا آپ اپنے خاندان سے محبت کرتے ہیں؟", re:"Yes, I love my family.", ru:"جی ہاں، میں اپنے خاندان سے محبت کرتا ہوں۔"},
+  // Grandfather & Pet
+  {qe:"Do you have a grandfather?", qu:"کیا آپ کے دادا/نانا ہیں؟", re:"Yes, I have a grandfather.", ru:"جی ہاں، میرے دادا/نانا ہیں۔"},
+  {qe:"How is your grandfather?", qu:"آپ کے دادا/نانا کیسے ہیں؟", re:"He is old and wise.", ru:"وہ بوڑھے اور دانا ہیں۔"},
+  {qe:"What does your grandfather do?", qu:"آپ کے دادا/نانا کیا کرتے ہیں؟", re:"He tells us stories.", ru:"وہ ہمیں کہانیاں سناتے ہیں۔"},
+  {qe:"Do you have a pet?", qu:"کیا آپ کے پاس پالتو جانور ہے؟", re:"Yes, I have a dog.", ru:"جی ہاں، میرے پاس کتا ہے۔"},
+  {qe:"What is your dog's name?", qu:"آپ کے کتے کا نام کیا ہے؟", re:"Its name is Max.", ru:"اس کا نام میکس ہے۔"},
+  {qe:"What does your dog like?", qu:"آپ کا کتا کیا پسند کرتا ہے؟", re:"It likes to play.", ru:"وہ کھیلنا پسند کرتا ہے۔"},
+  // Daily Life
+  {qe:"Where do you study?", qu:"آپ کہاں پڑھتے ہیں؟", re:"I study in school.", ru:"میں اسکول میں پڑھتا ہوں۔"},
+  {qe:"What do you do in school?", qu:"آپ اسکول میں کیا کرتے ہیں؟", re:"I learn and play with friends.", ru:"میں سیکھتا ہوں اور دوستوں کے ساتھ کھیلتا ہوں۔"},
+  {qe:"Do you like reading?", qu:"کیا آپ کو پڑھنا پسند ہے؟", re:"Yes, I like reading books.", ru:"جی ہاں، مجھے کتابیں پڑھنا پسند ہے۔"},
+  {qe:"Do you help your family?", qu:"کیا آپ اپنے خاندان کی مدد کرتے ہیں؟", re:"Yes, I help my family.", ru:"جی ہاں، میں مدد کرتا ہوں۔"},
+  {qe:"Are you a friendly person?", qu:"کیا آپ دوستانہ انسان ہیں؟", re:"Yes, I am friendly.", ru:"جی ہاں، میں دوستانہ ہوں۔"},
+  {qe:"What is your dream?", qu:"آپ کا خواب کیا ہے؟", re:"I want to become an entrepreneur.", ru:"میں کاروباری شخص بننا چاہتا ہوں۔"},
+  {qe:"Do you like cricket?", qu:"کیا آپ کو کرکٹ پسند ہے؟", re:"Yes, I like cricket.", ru:"جی ہاں، مجھے کرکٹ پسند ہے۔"},
+  {qe:"Are you happy with your life?", qu:"کیا آپ اپنی زندگی سے خوش ہیں؟", re:"Yes, I am happy with my life.", ru:"جی ہاں، میں خوش ہوں۔"},
 ];
 
 let cIdx=0, cStarted=false;
@@ -2472,33 +2571,40 @@ function cSpeak(item){
 
 /* ─── SPEAKING TEST ────────────────────────────────── */
 const tData=[
-  {q:"What is your name?", a:"My name is Noman."},
-  {q:"What should we call you?", a:"Please call me Nomi."},
-  {q:"Can I call you Nomi?", a:"Yes, you can call me Nomi."},
-  {q:"Are you a student?", a:"Yes, I am a student."},
-  {q:"Are you a new member?", a:"Yes, I am a new member."},
-  {q:"Are you happy to meet us?", a:"Yes, I am happy to meet you."},
-  {q:"How do you feel today?", a:"It is good to see you."},
-  {q:"Are you happy to be here?", a:"Yes, I am happy to be here."},
+  // ── Self-Introduction ──
+  {q:"What is your name?", a:"My name is Ahmad."},
   {q:"Where are you from?", a:"I am from Pakistan."},
-  {q:"Which city do you come from?", a:"I come from Peshawar."},
-  {q:"Where do you live?", a:"I live in Shergarh."},
-  {q:"Where is your home?", a:"My home is in Mardan."},
-  {q:"Do you live near the Mosque?", a:"Yes, I live near the Mosque."},
-  {q:"Who do you live with?", a:"I live with my family."},
-  {q:"Do you stay in Islamabad?", a:"Yes, I stay in Islamabad."},
-  {q:"Is your home a nice place?", a:"Yes, it is a nice place."},
-  {q:"How old are you?", a:"I am 14 years old."},
-  {q:"Is your birthday in August?", a:"Yes, my birthday is in August."},
-  {q:"Do you have two brothers?", a:"Yes, I have two brothers."},
-  {q:"Do you have one sister?", a:"Yes, I have one sister."},
-  {q:"Is your family kind?", a:"Yes, my family is very kind."},
-  {q:"Are you tall?", a:"Yes, I am a tall person."},
-  {q:"Are you quiet?", a:"Yes, I am a quiet person."},
-  {q:"What do you do?", a:"I am a student."},
+  {q:"Where do you live?", a:"I live in Islamabad."},
+  {q:"How old are you?", a:"I am 13 years old."},
+  {q:"Are you a student?", a:"Yes, I am a student."},
+  {q:"What do you like to do?", a:"I like reading books and playing cricket."},
+  {q:"Are you a friendly person?", a:"Yes, I am talkative and friendly."},
+  {q:"What is your dream?", a:"I want to become an entrepreneur."},
+  {q:"Are you happy with your life?", a:"Yes, I am happy with my life."},
+  {q:"Do you like cricket?", a:"Yes, I like cricket."},
+  // ── Family ──
+  {q:"Do you have a brother?", a:"Yes, I have a brother."},
+  {q:"What is your brother's name?", a:"His name is Ali."},
+  {q:"How old is your brother?", a:"He is 10 years old."},
+  {q:"What does your brother like?", a:"He likes football."},
+  {q:"How would you describe your brother?", a:"He is active and funny."},
+  {q:"Do you have a sister?", a:"Yes, I have a sister."},
+  {q:"What is your sister's name?", a:"Her name is Ayesha."},
+  {q:"What does your sister like?", a:"She likes drawing."},
+  {q:"How would you describe your sister?", a:"She is kind and smart."},
+  {q:"Tell me about your parents.", a:"They are kind and hardworking."},
+  {q:"What do your parents do?", a:"They take care of our family."},
+  {q:"Do you love your family?", a:"Yes, I love my family."},
+  // ── Grandfather & Pet ──
+  {q:"Do you have a grandfather?", a:"Yes, I have a grandfather."},
+  {q:"How would you describe your grandfather?", a:"He is old and wise."},
+  {q:"What does your grandfather do?", a:"He tells us stories."},
+  {q:"Do you have a pet?", a:"Yes, I have a dog named Max."},
+  {q:"What is your dog like?", a:"It is cute and loyal."},
+  // ── Daily Life & School ──
   {q:"Where do you study?", a:"I study in school."},
-  {q:"Do you study every day?", a:"Yes, I study every day."},
-  {q:"What do you want to become in the future?", a:"I want to become a businessman."},
+  {q:"What do you do in school?", a:"I learn and play with friends."},
+  {q:"Do you help your family?", a:"Yes, I help my family every day."},
 ];
 let tIdx=0;
 
@@ -2548,214 +2654,152 @@ function tPlayTTS(id){
 
 /* ─── ASSESSMENT ───────────────────────────────────── */
 const aVocab=[
-  {q:"Identity",       opts:["شہر","شناخت","خاندان"],           c:1},
-  {q:"Beginner",       opts:["استاد","ابتدائی سیکھنے والا","دوست"], c:1},
-  {q:"Confident",      opts:["شرمیلا","پراعتماد","خاموش"],       c:1},
-  {q:"Goal",           opts:["مقصد","کھیل","گاؤں"],              c:0},
-  {q:"Career",         opts:["ملازمت","پیشہ","سبق"],             c:1},
-  {q:"Rewarding",      opts:["مشکل","فائدہ مند","خاموش"],        c:1},
-  {q:"Native",         opts:["غیر ملکی","مقامی","طالب علم"],     c:1},
-  {q:"Improve",        opts:["دہرانا","بہتر بنانا","سننا"],       c:1},
-  {q:"Conversation",   opts:["گفتگو","سوال","جواب"],             c:0},
-  {q:"Honest",         opts:["ذہین","ایماندار","لمبا"],           c:1},
-  {q:"Local",          opts:["مقامی","سفر","تعلیم"],             c:0},
-  {q:"Hobby",          opts:["مشغلہ","عمر","دکان"],              c:0},
-  {q:"Practice",       opts:["کوشش","مشق","جواب"],               c:1},
-  {q:"Future",         opts:["ماضی","حال","مستقبل"],             c:2},
-  {q:"Academy",        opts:["اکیڈمی","گھر","مسجد"],             c:0},
-  {q:"Quiet",          opts:["خاموش","دوستانہ","تیز"],            c:0},
-  {q:"Businessman",    opts:["کاروباری شخص","استاد","والد"],      c:0},
-  {q:"Knowledge",      opts:["کتاب","علم","شہر"],                c:1},
-  {q:"Active",         opts:["سست","متحرک","شرمیلا"],            c:1},
-  {q:"Introduce",      opts:["سننا","تعارف کروانا","منتقل ہونا"], c:1},
+  {q:'"They" means:', opts:["وہ (واحد)","وہ (جمع)","ہم"], c:1},
+  {q:'"Our" means:', opts:["ان کا","ہمارا","تمہارا"], c:1},
+  {q:'"He" refers to:', opts:["مونث","مذکر شخص","جانور"], c:1},
+  {q:'"We" means:', opts:["میں","ہم","وہ"], c:1},
+  {q:'"Wise" means:', opts:["سست","دانا","غصہ"], c:1},
+  {q:'"Hardworking" means:', opts:["محنتی","خوش","بیمار"], c:0},
+  {q:'"Entrepreneur" means:', opts:["طالب علم","کاروباری شخص","ڈاکٹر"], c:1},
+  {q:'"Introduce" means:', opts:["کھانا","تعارف کروانا","کھیلنا"], c:1},
+  {q:'"Care" means:', opts:["خیال رکھنا","بھول جانا","دوڑنا"], c:0},
+  {q:'"Future" means:', opts:["ماضی","مستقبل","آج"], c:1},
+  {q:'"Honest" means:', opts:["ایماندار","جھوٹا","غصہ"], c:0},
+  {q:'"Active" means:', opts:["متحرک","سست","بیمار"], c:0},
+  {q:'"Is" is used for:', opts:["واحد","جمع","سوال"], c:0},
+  {q:'"Are" is used for:', opts:["واحد","جمع","ماضی"], c:1},
+  {q:'"My" means:', opts:["میرا / میری","اس کا","ان کا"], c:0},
+  {q:'"Her" means:', opts:["اس کا (مونث)","ہمارا","تمہارا"], c:0},
+  {q:'"Their" means:', opts:["ان کا","میرا","تمہارا"], c:0},
+  {q:'"Polite" means:', opts:["بدتمیز","شائستہ","غصہ"], c:1},
+  {q:'"Loyal" means:', opts:["وفادار","سست","جھوٹا"], c:0},
+  {q:'"Different" means:', opts:["ایک جیسا","مختلف","آسان"], c:1},
 ];
 const aTrans=[
-  {q:"میرا نام نومان ہے۔",                    opts:["I am from Pakistan.","My name is Noman.","I am a student."],           c:1},
-  {q:"میں ایک طالب علم ہوں۔",                opts:["I am a student.","I am a teacher.","I am happy."],                    c:0},
-  {q:"میں پاکستان سے ہوں۔",                  opts:["I live in Mardan.","I am from Pakistan.","I like sports."],            c:1},
-  {q:"میں شیرگڑھ میں رہتا ہوں۔",            opts:["I live in Shergarh.","I work in school.","I am 14 years old."],        c:0},
-  {q:"میری سالگرہ اگست میں ہے۔",            opts:["My birthday is in August.","I am 15 years old.","I am tall."],         c:0},
-  {q:"میرے دو بھائی ہیں۔",                  opts:["I have one sister.","I have two brothers.","I am the only child."],    c:1},
-  {q:"میں انگریزی سیکھ رہا ہوں۔",           opts:["I am learning English.","I like tea.","I play sports."],               c:0},
-  {q:"میں روز پڑھتا ہوں۔",                  opts:["I study every day.","I live with family.","I want a job."],            c:0},
-  {q:"میں ایک دوستانہ شخص ہوں۔",            opts:["I am a shy person.","I am a friendly person.","I am quiet."],         c:1},
-  {q:"میں بزنس مین بننا چاہتا ہوں۔",        opts:["I want to become a businessman.","I want to become a teacher.","I am a student."], c:0},
-  {q:"میں اپنے خاندان کے ساتھ رہتا ہوں۔",  opts:["I live with my family.","I live alone.","I work at a shop."],          c:0},
-  {q:"میں پشاور سے آیا ہوں۔",               opts:["I come from Peshawar.","I go to school.","I stay in Islamabad."],      c:0},
-  {q:"میں خوش ہوں۔",                         opts:["I am quiet.","I am happy.","I am local."],                            c:1},
-  {q:"میں ایک نئے رکن ہوں۔",                opts:["I am a new member.","I am a businessman.","I am a teacher."],          c:0},
-  {q:"آپ مجھے نومی کہہ سکتے ہیں۔",         opts:["My name is Nomi.","You can call me Nomi.","I am Nomi."],               c:1},
-  {q:"میں بہت محنت کرتا ہوں۔",              opts:["I am a hard worker.","I am shy.","I am tall."],                        c:0},
-  {q:"میں یہاں خوش ہوں۔",                   opts:["I am happy to be here.","I am local here.","I am from here."],         c:0},
-  {q:"میں ایک خاموش شخص ہوں۔",              opts:["I am a quiet person.","I am active.","I am loud."],                   c:0},
-  {q:"میں انگلش بولنا چاہتا ہوں۔",          opts:["I want to speak English.","I want tea.","I want food."],               c:0},
-  {q:"بس میرے بارے میں اتنا ہی۔",          opts:["Thank you.","That is all about me.","Help me."],                       c:1},
+  {q:"میں ایک طالب علم ہوں", opts:["I am a teacher","I am a student","I am a doctor"], c:1},
+  {q:"وہ بہت ذہین ہے", opts:["He is very smart","He is very slow","He is very tall"], c:0},
+  {q:"ہم دوست ہیں", opts:["We are friends","They are friends","You are friends"], c:0},
+  {q:"وہ کرکٹ کھیلتا ہے", opts:["He plays cricket","He reads books","He plays football"], c:0},
+  {q:"وہ مہربان ہے", opts:["She is kind","She is angry","She is busy"], c:0},
+  {q:"یہ میرا گھر ہے", opts:["It is my house","It is my school","It is my book"], c:0},
+  {q:"وہ استاد ہیں", opts:["They are teachers","He is teacher","We are teacher"], c:0},
+  {q:"میں خوش ہوں", opts:["I am happy","I am sad","I am tired"], c:0},
+  {q:"وہ ہمارے والدین ہیں", opts:["They are our parents","They are my friends","They are students"], c:0},
+  {q:"وہ مستقبل میں ڈاکٹر بننا چاہتا ہے", opts:["He wants to become a doctor in future","He is doctor now","He likes doctor"], c:0},
+];
+const aConv=[
+  // Section 3: My Introduction
+  {para:"My Introduction", bank:["I","student","ten","from","live","like","Reading","cricket","friendly","am"],
+   blanks:["__________","__________","__________","__________","__________","__________","__________","__________","__________","__________"],
+   answers:["I","am","student","ten","from","live","like","Reading","cricket","friendly"],
+   template:"My name is Irfan. (1)__________ am a (2)__________. I (3)__________ (4)__________ years old. I am (5)__________ Pakistan. I (6)__________ in a city. I (7)__________ to read books. (8)__________ is my favorite hobby. I also play (9)__________. I am a (10)__________ person."},
+  // Section 4: My Brother
+  {para:"My Brother", bank:["brother","is","student","years","plays","football","active","funny","friendly","person"],
+   answers:["brother","is","student","years","plays","football","active","funny","friendly","person"],
+   template:"This is Ali. He is my (1)__________. He (2)__________ my family member. He is a (3)__________ at school. He is ten (4)__________ old. He (5)__________ sports every day. His favorite game is (6)__________. He is very (7)__________ and moves fast. He is a (8)__________ boy who makes me laugh. He is (9)__________ to everyone. He is a good (10)__________."},
+  // Section 5: My Sister
+  {para:"My Sister", bank:["sister","is","student","years","likes","drawing","smart","kind","friendly","person"],
+   answers:["sister","is","student","years","likes","drawing","smart","kind","friendly","person"],
+   template:"This is Sana. She is my (1)__________. She (2)__________ a girl. She is a (3)__________ in class one. She is eight (4)__________ old. She (5)__________ art. She is (6)__________ beautiful flowers today. She is very (7)__________ and gets good marks. She is (8)__________ and helps me. She is (9)__________ to her friends. She is a nice (10)__________."},
+  // Section 6: My Family
+  {para:"My Family", bank:["my","parents","are","hardworking","kind","care","home","happy","love","family"],
+   answers:["my","parents","are","hardworking","kind","care","home","happy","love","family"],
+   template:"I love (1)__________ family. I live with my (2)__________. They (3)__________ very good to me. They are (4)__________ at their jobs. They are (5)__________ and helpful. They take (6)__________ of me every day. We stay in a small (7)__________. We are a (8)__________ family. We (9)__________ each other very much. This is my sweet (10)__________."},
 ];
 
-/* ── Fill-in-the-blank data ── */
-const aFill1 = {
-  bank: ["Family","Lahore","Friendly","Teacher","Pakistan","School","Cricket","Student","English","15"],
-  blanks: ["Student","Pakistan","Family","School","15","Cricket","English","Friendly","Lahore","Teacher"],
-  para: [
-    {before:"Hello friends. My name is Ali. I am a ",after:"."},
-    {before:" I am from ",after:"."},
-    {before:" I live with my ",after:"."},
-    {before:" I study in ",after:"."},
-    {before:" I am ",after:" years old."},
-    {before:" I like ",after:"."},
-    {before:" I am learning ",after:" every day."},
-    {before:" I am a ",after:" person."},
-    {before:" I live in the city of ",after:"."},
-    {before:" In the future, I want to be a ",after:"."},
-  ]
-};
-const aFill2 = {
-  bank: ["Pakistan","Happy","August","Student","Family","English","Shergarh","Brothers","School","Businessman"],
-  blanks: ["Student","Pakistan","Shergarh","Family","School","August","Brothers","English","Businessman","Happy"],
-  para: [
-    {before:"Hello everyone. My name is Noman. I am a ",after:"."},
-    {before:" I am from ",after:"."},
-    {before:" I live in ",after:""},
-    {before:" with my ",after:"."},
-    {before:" I study in ",after:"."},
-    {before:" My birthday is in ",after:"."},
-    {before:" I have two ",after:"."},
-    {before:" I am learning ",after:" every day."},
-    {before:" I want to become a ",after:" in the future."},
-    {before:" I am very ",after:" to be here."},
-  ]
-};
-
-/* dragged word state */
-let aDragWord = null;
-let aFill1Answers = new Array(10).fill(null);
-let aFill2Answers = new Array(10).fill(null);
-
 let aScore=0;
+// Fill-in-the-blank state: selectedWord per paragraph
+const aFillState = {}; // keyed by para index: {selectedBank: wordIdx|null, blanks: [filledWord|null,...]}
+
 function aBuild(){
   document.getElementById('a-vocab-sec').innerHTML='';
   document.getElementById('a-trans-sec').innerHTML='';
-  document.getElementById('a-fill1-sec').innerHTML='';
-  document.getElementById('a-fill2-sec').innerHTML='';
-  aFill1Answers = new Array(10).fill(null);
-  aFill2Answers = new Array(10).fill(null);
+  document.getElementById('a-conv-sec').innerHTML='';
 
-  /* Section 1 — Vocab MCQ */
+  // Section 1: MCQ Vocabulary
   aVocab.forEach((d,i)=>{
     document.getElementById('a-vocab-sec').innerHTML+=`
     <div class="a-q-box" id="av-${i}">
       <div class="a-q-row">
         <span class="a-q-text">${i+1}. ${d.q}</span>
-        <div class="a-opt-row">${d.opts.map((o,idx)=>`<button class="a-opt-btn a-urdu" onclick="aChk(this,${idx},${d.c},'av-${i}')">${String.fromCharCode(97+idx)}) ${o}</button>`).join('')}</div>
       </div>
+      <div class="a-opt-row">${d.opts.map((o,idx)=>`<button class="a-opt-btn a-urdu" onclick="aChk(this,${idx},${d.c},'av-${i}')">${o}</button>`).join('')}</div>
     </div>`;
   });
 
-  /* Section 2 — Translation MCQ */
+  // Section 2: MCQ Translation
   aTrans.forEach((d,i)=>{
     document.getElementById('a-trans-sec').innerHTML+=`
     <div class="a-q-box" id="at-${i}">
-      <span class="a-q-text" style="display:block;margin-bottom:6px;font-size:0.93rem;direction:rtl;font-family:'Noto Nastaliq Urdu',serif;">${i+1}. ${d.q}</span>
-      <div class="a-opt-row">${d.opts.map((o,idx)=>`<button class="a-opt-btn" style="font-size:0.78rem;text-align:left;" onclick="aChk(this,${idx},${d.c},'at-${i}')">${String.fromCharCode(97+idx)}) ${o}</button>`).join('')}</div>
+      <span class="a-q-text a-urdu" style="display:block;margin-bottom:8px;font-size:1rem;">${i+1}. ${d.q}</span>
+      <div class="a-opt-row">${d.opts.map((o,idx)=>`<button class="a-opt-btn" onclick="aChk(this,${idx},${d.c},'at-${i}')">${o}</button>`).join('')}</div>
     </div>`;
   });
 
-  /* Section 3 — Fill 1 */
-  buildFill('a-fill1-sec', aFill1, 1);
-
-  /* Section 4 — Fill 2 */
-  buildFill('a-fill2-sec', aFill2, 2);
-}
-
-function buildFill(containerId, data, num) {
-  const container = document.getElementById(containerId);
-  const answers = num===1 ? aFill1Answers : aFill2Answers;
-
-  /* Word bank */
-  let bankHTML = `<div id="a-bank-${num}" style="display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:rgba(40,168,112,0.08);border-radius:10px;margin:8px 12px 14px;border:1px dashed rgba(40,168,112,0.3);">`;
-  data.bank.forEach(w => {
-    bankHTML += `<span class="a-drag-word" draggable="true" id="aw-${num}-${w}"
-      ondragstart="aDragStart(event,'${w}')"
-      onclick="aWordClick(this,'${w}',${num})"
-      style="background:#fff;border:1.5px solid var(--green-400);color:var(--text-dark);padding:5px 12px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;user-select:none;transition:0.15s;">${w}</span>`;
+  // Section 3: Fill in the Blanks
+  aConv.forEach((d,i)=>{
+    aFillState[i] = {selectedBank: null, blanks: new Array(d.answers.length).fill(null)};
+    // Build paragraph HTML with clickable blanks
+    let paraHTML = d.template.replace(/\((\d+)\)__________/g, (match, num)=>{
+      const bIdx = parseInt(num)-1;
+      return `(${num})<span class="a-blank" id="afb-${i}-${bIdx}" onclick="aFillBlank(${i},${bIdx})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>`;
+    });
+    const bankHTML = d.bank.map((w,wi)=>`<button class="a-bank-word" id="afbw-${i}-${wi}" onclick="aSelectWord(${i},${wi},'${w}')">${w}</button>`).join('');
+    document.getElementById('a-conv-sec').innerHTML+=`
+    <div class="a-fill-box" id="afp-${i}">
+      <div class="a-fill-title">📝 ${d.para}</div>
+      <div style="margin-bottom:6px;font-size:0.75rem;font-weight:700;color:var(--text-muted);letter-spacing:.5px;">WORD BANK</div>
+      <div class="a-word-bank">${bankHTML}</div>
+      <div class="a-para-text">${paraHTML}</div>
+    </div>`;
   });
-  bankHTML += `</div>`;
-
-  /* Paragraph with blanks */
-  let paraHTML = `<div style="background:#fff;border-radius:12px;padding:14px 16px;margin:0 12px 8px;font-size:0.88rem;font-weight:600;color:var(--text-dark);line-height:2.4;border:1px solid rgba(40,168,112,0.15);">`;
-  data.para.forEach((seg, i) => {
-    paraHTML += `${seg.before}<span class="a-blank" id="ab-${num}-${i}"
-      ondragover="event.preventDefault()"
-      ondrop="aDrop(event,${num},${i})"
-      onclick="aBlankClick(this,${num},${i})"
-      style="display:inline-block;min-width:55px;text-align:center;padding:5px 12px;margin:0 2px;font-weight:700;cursor:pointer;border-radius:20px;background:#fff;border:1.5px solid #ccc;color:#333;font-size:0.82rem;line-height:1;vertical-align:middle;"> &nbsp;&nbsp; </span>${seg.after}`;
-  });
-  paraHTML += `</div>`;
-
-  container.innerHTML = bankHTML + paraHTML;
 }
 
-/* drag-and-drop + tap-to-place */
-function aDragStart(e, word) { aDragWord = word; }
+// Select a word from the bank
+window.aSelectWord = function(paraIdx, wordIdx, word) {
+  const state = aFillState[paraIdx];
+  // Deselect previous
+  if (state.selectedBank !== null) {
+    const prev = document.getElementById(`afbw-${paraIdx}-${state.selectedBank}`);
+    if(prev) prev.classList.remove('selected');
+  }
+  // If clicking same word again — deselect
+  if (state.selectedBank === wordIdx) { state.selectedBank = null; return; }
+  state.selectedBank = wordIdx;
+  const btn = document.getElementById(`afbw-${paraIdx}-${wordIdx}`);
+  if(btn) btn.classList.add('selected');
+};
 
-function aDrop(e, num, idx) {
-  e.preventDefault();
-  if (!aDragWord) return;
-  placeWord(aDragWord, num, idx);
-  aDragWord = null;
-}
-
-let aSelectedWord = null;
-let aSelectedWordEl = null;
-
-function aWordClick(el, word, num) {
-  /* toggle selection */
-  if (aSelectedWord === word) {
-    aSelectedWord = null; aSelectedWordEl = null;
-    el.style.background = '#fff'; el.style.borderColor = 'var(--green-400)';
+// Click a blank to fill it
+window.aFillBlank = function(paraIdx, blankIdx) {
+  const state = aFillState[paraIdx];
+  const blankEl = document.getElementById(`afb-${paraIdx}-${blankIdx}`);
+  // If blank already filled — clear it
+  if (state.blanks[blankIdx] !== null) {
+    // Re-enable the bank word that was used here
+    const usedWord = state.blanks[blankIdx];
+    const d = aConv[paraIdx];
+    const wi = d.bank.indexOf(usedWord);
+    if(wi>=0){ const bw=document.getElementById(`afbw-${paraIdx}-${wi}`); if(bw){bw.classList.remove('used');bw.classList.remove('selected');}}
+    state.blanks[blankIdx] = null;
+    blankEl.textContent = '      ';
+    blankEl.classList.remove('filled');
+    if(state.selectedBank!==null){const sw=document.getElementById(`afbw-${paraIdx}-${state.selectedBank}`);if(sw)sw.classList.remove('selected');state.selectedBank=null;}
     return;
   }
-  /* deselect previous */
-  if (aSelectedWordEl) { aSelectedWordEl.style.background='#fff'; aSelectedWordEl.style.borderColor='var(--green-400)'; }
-  aSelectedWord = word; aSelectedWordEl = el;
-  el.style.background = 'var(--green-100)'; el.style.borderColor = 'var(--green-600)';
-}
-
-function aBlankClick(el, num, idx) {
-  if (!aSelectedWord) return;
-  placeWord(aSelectedWord, num, idx);
-  if (aSelectedWordEl) { aSelectedWordEl.style.background='#fff'; aSelectedWordEl.style.borderColor='var(--green-400)'; }
-  aSelectedWord = null; aSelectedWordEl = null;
-}
-
-function placeWord(word, num, idx) {
-  const answers = num===1 ? aFill1Answers : aFill2Answers;
-  const data    = num===1 ? aFill1        : aFill2;
-
-  /* if word already placed somewhere, clear that blank */
-  const prev = answers.indexOf(word);
-  if (prev !== -1) {
-    answers[prev] = null;
-    document.getElementById(`ab-${num}-${prev}`).innerHTML = ' &nbsp;&nbsp; ';
-    document.getElementById(`ab-${num}-${prev}`).style.color = '#333';
-  }
-
-  /* if blank already had a word, return it to bank visually */
-  const old = answers[idx];
-  if (old) {
-    const oldEl = document.getElementById(`aw-${num}-${old}`);
-    if (oldEl) { oldEl.style.display=''; }
-  }
-
-  answers[idx] = word;
-  const blank = document.getElementById(`ab-${num}-${idx}`);
-  blank.textContent = word;
-  blank.style.color = 'var(--text-dark)';
-
-  /* hide used word from bank */
-  const wordEl = document.getElementById(`aw-${num}-${word}`);
-  if (wordEl) wordEl.style.display = 'none';
-}
+  // No word selected — nothing to do
+  if (state.selectedBank === null) return;
+  const d = aConv[paraIdx];
+  const word = d.bank[state.selectedBank];
+  // Fill the blank
+  state.blanks[blankIdx] = word;
+  blankEl.textContent = word;
+  blankEl.classList.add('filled');
+  // Mark bank word as used
+  const bw = document.getElementById(`afbw-${paraIdx}-${state.selectedBank}`);
+  if(bw){ bw.classList.remove('selected'); bw.classList.add('used'); }
+  state.selectedBank = null;
+};
 
 function aChk(btn,sel,cor,qid){
   const p=document.getElementById(qid);
@@ -2766,33 +2810,38 @@ function aChk(btn,sel,cor,qid){
 }
 
 function aSubmit(){
-  /* score fill-in-the-blank */
-  [aFill1, aFill2].forEach((data, fi) => {
-    const num = fi+1;
-    const answers = fi===0 ? aFill1Answers : aFill2Answers;
-    answers.forEach((ans, i) => {
-      const blank = document.getElementById(`ab-${num}-${i}`);
-      if (ans === data.blanks[i]) {
-        aScore++;
+  // Score fill-in-the-blank
+  let fillScore = 0, fillTotal = 0;
+  aConv.forEach((d,i)=>{
+    const state = aFillState[i];
+    d.answers.forEach((ans, bIdx)=>{
+      fillTotal++;
+      const blankEl = document.getElementById(`afb-${i}-${bIdx}`);
+      const given = (state.blanks[bIdx]||'').toLowerCase().trim();
+      if(given === ans.toLowerCase().trim()){
+        fillScore++; aScore++;
+        if(blankEl){blankEl.classList.add('correct-fill');}
       } else {
-        if(blank){
-          blank.textContent = (ans||'—');
-        }
+        if(blankEl){blankEl.classList.add('wrong-fill'); blankEl.title='Answer: '+ans;}
       }
+      // Disable further interaction
+      if(blankEl) blankEl.onclick=null;
     });
+    // Disable bank words
+    d.bank.forEach((_,wi)=>{ const bw=document.getElementById(`afbw-${i}-${wi}`); if(bw)bw.onclick=null; });
   });
 
   document.getElementById('a-quiz').style.display='none';
   document.getElementById('a-result').style.display='block';
   document.getElementById('a-bottom-nav').style.display='flex';
-  const total = aVocab.length + aTrans.length + aFill1.blanks.length + aFill2.blanks.length;
+  const total = aVocab.length + aTrans.length + fillTotal;
   document.getElementById('a-score').textContent=`${aScore}/${total}`;
   let r='';
   if(aScore===total)r="Perfect! You are a Master! 🌟";
   else if(aScore>=total*0.83)r="Excellent Work! Keep it up! 👏";
-  else if(aScore>=total*0.67)r="Good Job! You're doing well. 👍";
-  else if(aScore>=total*0.5)r="Keep Practicing! You're getting there. 💪";
-  else r="Don't give up! Review the lessons and try again. 📚";
+  else if(aScore>=total*0.67)r="Good Job! You\'re doing well. 👍";
+  else if(aScore>=total*0.5)r="Keep Practicing! You\'re getting there. 💪";
+  else r="Don\'t give up! Review the lessons and try again. 📚";
   document.getElementById('a-remarks').textContent=r;
   const end=Date.now()+3000;
   (function frame(){
@@ -2828,7 +2877,6 @@ window.addEventListener('load',()=>{
   vRender(0);
   sRender();
   aBuild();
-  updateCourseProgress();
   window.speechSynthesis.onvoiceschanged=()=>{synth.getVoices();};
 });
 
@@ -2840,7 +2888,7 @@ function challengeCopyNumber() {
 }
 
 /* ─── COURSE PROGRESS ─────────────────────────────── */
-let daysCompleted = 2;
+let daysCompleted = 0;
 function updateCourseProgress() {
   const total = 60;
   const pct = Math.min((daysCompleted / total) * 100, 100);
@@ -2851,15 +2899,29 @@ function updateCourseProgress() {
 }
 
 function challengeGenerateImage() {
+  const qs = [
+    "Hello! How are you?",
+    "What is your name?",
+    "Where are you from?",
+    "Nice to meet you!",
+    "See you tomorrow!"
+  ];
+
+  // ── Populate header with student info ──
+  const nameEl = document.getElementById('challenge-name-input');
+  const studentName = (nameEl ? nameEl.value.trim() : '') || window.USER_NAME || '—';
+  document.getElementById('ch-header-name').textContent  = studentName;
   document.getElementById('ch-header-marks').textContent = 'Quiz Marks: ' + aScore;
   document.getElementById('ch-header-day').textContent   = 'Day ' + daysCompleted + ': Writing Task';
   const resultsDiv = document.getElementById('challenge-results-content');
   resultsDiv.innerHTML = '';
-  const paraText = (document.getElementById('cq-para').value || '').trim();
-  const para = document.createElement('p');
-  para.style.cssText = "margin:0;font-size:0.82rem;font-weight:500;color:#1a1a1a;line-height:1.7;text-align:left;white-space:pre-wrap;word-break:break-word;";
-  para.textContent = paraText || '—';
-  resultsDiv.appendChild(para);
+  for (let i = 1; i <= 5; i++) {
+    const ans = document.getElementById('cq' + i).value || "Not answered";
+    const row = document.createElement('div');
+    row.style.cssText = "background:rgba(255,255,255,0.6);border:1px solid rgba(0,0,0,0.05);border-radius:6px;padding:5px 10px;margin:0 10px 6px 10px;";
+    row.innerHTML = `<b style="color:#064e3b;display:block;font-size:0.72rem;margin-bottom:1px;">${qs[i-1]}</b><span style="color:#1a1a1a;display:block;font-size:0.78rem;font-weight:500;">${ans}</span>`;
+    resultsDiv.appendChild(row);
+  }
   const area = document.getElementById('challenge-capture-area');
   // Increment course progress
   if (daysCompleted < 60) { daysCompleted++; updateCourseProgress(); }
@@ -2867,12 +2929,26 @@ function challengeGenerateImage() {
     scale: 3,
     useCORS: true,
     logging: false,
-    backgroundColor: null
+    backgroundColor: '#064e3b'
   }).then(canvas => {
-    const link = document.createElement('a');
-    link.download = 'Day2_Writing_Task.png';
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+    const dataURL = canvas.toDataURL('image/png');
+    // Show preview + download link (works on all devices including iOS)
+    const previewImg = document.getElementById('challenge-preview-img');
+    const dlLink     = document.getElementById('challenge-download-link');
+    const dlArea     = document.getElementById('challenge-download-area');
+    previewImg.src   = dataURL;
+    dlLink.href      = dataURL;
+    dlArea.style.display = 'block';
+    dlArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Also attempt programmatic download for desktop browsers
+    try {
+      const a = document.createElement('a');
+      a.download = 'Day1_Writing_Task.png';
+      a.href = dataURL;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch(e) { /* desktop download failed silently; user can use the link/image above */ }
   });
 }
 
@@ -2896,7 +2972,7 @@ window.showPage = function(id) {
 <div id="sidebar-overlay" onclick="closeSidebar()"></div>
 <nav id="sidebar">
   <div id="sidebar-header">
-    <span id="sidebar-title">Day 2: How to Introduce Yourself</span>
+    <span id="sidebar-title">Day 1: [Topic]</span>
     <button id="sidebar-close" onclick="closeSidebar()" aria-label="Close menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
         <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -2913,11 +2989,165 @@ window.showPage = function(id) {
   <button class="sb-btn" onclick="gotoPage('challenge');closeSidebar()">1.7: Challenge</button>
 </nav>
 
-
-
-
-
+<!-- ═══════════════ REGISTRATION GATE ═══════════════ -->
 <style>
+#reg-gate {
+  position:fixed;inset:0;z-index:99999;
+  background:#6BBF6B;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;
+  overflow-y:auto;
+  padding:20px 0;
+}
+.reg-box {
+  background:rgba(255,255,255,0.75);
+  border:1px solid rgba(255,255,255,0.9);
+  border-radius:28px;
+  padding:44px 40px 40px;
+  max-width:400px;width:90%;
+  text-align:center;
+  box-shadow:0 24px 80px rgba(0,0,0,0.25);
+  position:relative;z-index:1;
+}
+.reg-icon { font-size:2.2rem;margin-bottom:10px; }
+.reg-title {
+  font-family:'Cinzel',serif;color:#0d4a22;
+  font-size:1.25rem;margin-bottom:4px;letter-spacing:.5px;
+}
+.reg-sub { color:rgba(0,0,0,0.5);font-size:0.82rem;margin-bottom:28px; }
+.reg-field {
+  width:100%;padding:13px 18px;
+  border-radius:50px;border:1.5px solid rgba(40,168,112,0.5);
+  background:rgba(255,255,255,0.9);
+  color:#0d1f13;font-size:0.95rem;font-family:'Nunito',sans-serif;
+  outline:none;text-align:center;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  margin-bottom:14px;box-sizing:border-box;
+}
+.reg-field::placeholder{color:rgba(0,0,0,0.35);}
+.reg-field:focus{border-color:rgba(40,168,112,0.75);box-shadow:0 0 0 3px rgba(40,168,112,0.13);}
+
+/* ── Photo Upload Area ── */
+.reg-photo-area {
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  margin-bottom:4px;
+}
+.reg-avatar-ring {
+  width:88px;height:88px;border-radius:50%;
+  border:2.5px dashed rgba(40,168,112,0.5);
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.05);
+  overflow:hidden;position:relative;cursor:pointer;
+  transition:border-color 0.2s,background 0.2s;
+}
+.reg-avatar-ring:hover{border-color:rgba(244,208,63,0.7);background:rgba(244,208,63,0.05);}
+.reg-avatar-ring img{width:100%;height:100%;object-fit:cover;display:none;border-radius:50%;}
+.reg-avatar-ring .avatar-placeholder{font-size:2rem;opacity:0.5;pointer-events:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1;}
+.reg-photo-btn {
+  font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;
+  color:#0d4a22;
+  background:rgba(40,168,112,0.2);
+  border:1px solid rgba(40,168,112,0.45);
+  border-radius:50px;padding:8px 18px;cursor:pointer;
+  transition:background 0.2s,color 0.2s;
+}
+.reg-photo-btn:hover{background:rgba(40,168,112,0.4);color:#fff;}
+
+/* ── Crop Modal ── */
+#crop-modal {
+  position:fixed;inset:0;z-index:100001;
+  background:rgba(0,0,0,0.88);
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;
+}
+#crop-modal.open{display:flex;}
+.crop-box{
+  background:#0d2b18;border:1px solid rgba(40,168,112,0.4);
+  border-radius:24px;padding:30px 28px;
+  max-width:380px;width:100%;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+.crop-title{font-family:'Cinzel',serif;color:#f4d03f;font-size:1rem;margin-bottom:18px;letter-spacing:.4px;}
+.crop-stage{
+  position:relative;width:260px;height:260px;margin:0 auto 18px;
+  border-radius:50%;overflow:hidden;
+  border:3px solid rgba(40,168,112,0.6);
+  background:#061710;cursor:grab;user-select:none;
+  touch-action:none;
+}
+.crop-stage:active{cursor:grabbing;}
+#crop-img{
+  position:absolute;transform-origin:center center;
+  max-width:none;pointer-events:none;
+  image-rendering:auto;
+}
+.crop-mask{
+  position:absolute;inset:0;border-radius:50%;
+  box-shadow:0 0 0 9999px rgba(0,0,0,0.6);pointer-events:none;
+}
+.crop-zoom-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;justify-content:center;}
+.crop-zoom-row label{color:rgba(255,255,255,0.6);font-size:0.78rem;font-weight:700;}
+#crop-zoom{width:140px;accent-color:#28a870;}
+.crop-actions{display:flex;gap:10px;justify-content:center;}
+.crop-btn{
+  font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;
+  border:none;border-radius:50px;padding:11px 26px;cursor:pointer;transition:transform 0.15s;
+}
+.crop-btn:hover{transform:scale(1.04);}
+.crop-confirm{background:linear-gradient(135deg,#28a870,#22883f);color:#fff;}
+.crop-cancel{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.18);}
+
+/* ── Create Account Button ── */
+.reg-submit {
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,#f4d03f,#d4ac0d);
+  color:#061710;border:none;border-radius:50px;
+  font-size:1rem;font-weight:900;cursor:pointer;
+  font-family:'Cinzel',serif;letter-spacing:.5px;
+  transition:transform 0.15s,box-shadow 0.15s;
+  box-shadow:0 6px 20px rgba(244,208,63,0.35);
+  margin-top:2px;
+}
+.reg-submit:hover{transform:scale(1.04);box-shadow:0 10px 30px rgba(244,208,63,0.48);}
+.reg-err{color:#b91c1c;font-size:0.8rem;min-height:18px;margin-bottom:6px;}
+.reg-prev-btn {
+  display:inline-flex;align-items:center;gap:5px;
+  background:transparent;border:1.5px solid rgba(40,168,112,0.45);
+  color:#0d4a22;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;
+  border-radius:50px;padding:6px 14px;cursor:pointer;
+  transition:background 0.2s;margin-bottom:14px;
+}
+.reg-prev-btn:hover{background:rgba(40,168,112,0.15);}
+
+/* ── Photo Source Picker ── */
+#photo-source-modal {
+  position:fixed;inset:0;z-index:100002;
+  background:rgba(0,0,0,0.75);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+}
+#photo-source-modal.open{display:flex;}
+.photo-source-box {
+  background:#0d2b18;border:1px solid rgba(40,168,112,0.4);
+  border-radius:22px;padding:28px 24px;
+  max-width:300px;width:100%;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+.photo-source-title{font-family:'Cinzel',serif;color:#f4d03f;font-size:1rem;margin-bottom:22px;letter-spacing:.4px;}
+.photo-source-btns{display:flex;gap:14px;justify-content:center;}
+.photo-source-btn{
+  flex:1;padding:16px 8px;border-radius:14px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:0.88rem;
+  transition:transform 0.15s;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.photo-source-btn:hover{transform:scale(1.05);}
+.photo-source-btn span{font-size:2rem;line-height:1;}
+.psb-camera{background:rgba(40,168,112,0.2);border:1.5px solid rgba(40,168,112,0.5) !important;color:#fff;}
+.psb-gallery{background:rgba(244,208,63,0.15);border:1.5px solid rgba(244,208,63,0.4) !important;color:#fff;}
+.photo-source-cancel{margin-top:16px;background:none;border:none;color:rgba(255,255,255,0.4);font-size:0.8rem;cursor:pointer;font-family:'Nunito',sans-serif;display:block;width:100%;}
+.photo-source-cancel:hover{color:rgba(255,255,255,0.75);}
+
 /* ── Avatar Dropdown ── */
 #ud-user-avatar-wrap { cursor:pointer; }
 #ud-avatar-dropdown {
@@ -2953,10 +3183,240 @@ window.showPage = function(id) {
 #ud-logout-btn:hover{background:rgba(239,68,68,0.28);}
 </style>
 
+<div id="reg-gate">
+  <div class="reg-box">
+    <button class="reg-prev-btn" onclick="closeRegGate()">◀ Previous</button>
+    <div class="reg-icon">📚</div>
+    <h2 class="reg-title">English Mastery Course</h2>
+    <p class="reg-sub">Create your account to begin</p>
 
+    <input id="reg-name" class="reg-field" type="text" placeholder="Enter Your Name" autocomplete="off"/>
+    <input id="reg-id"   class="reg-field" type="text" placeholder="Enter ID" autocomplete="off"/>
+    <input id="reg-pwd"  class="reg-field" type="password" placeholder="Enter Password" autocomplete="off"/>
+
+    <div class="reg-photo-area">
+      <div class="reg-avatar-ring" id="reg-avatar-ring" onclick="regOpenCamera()">
+        <img id="reg-avatar-preview" alt="Profile"/>
+        <span class="avatar-placeholder" id="reg-avatar-placeholder">📷</span>
+      </div>
+      <button class="reg-photo-btn" onclick="regOpenCamera()">Upload / Take Profile Picture</button>
+    </div>
+
+    <div class="reg-err" id="reg-err"></div>
+    <button class="reg-submit" onclick="regSubmit()">Create Account</button>
+  </div>
+</div>
+
+<!-- ── Crop Modal ── -->
+<div id="crop-modal">
+  <div class="crop-box">
+    <div class="crop-title">🖼️ Position Your Face</div>
+    <div class="crop-stage" id="crop-stage">
+      <img id="crop-img" alt=""/>
+      <div class="crop-mask"></div>
+    </div>
+    <div class="crop-zoom-row">
+      <label>Zoom</label>
+      <input type="range" id="crop-zoom" min="0.5" max="3" step="0.01" value="1" oninput="cropApplyTransform()"/>
+    </div>
+    <div class="crop-actions">
+      <button class="crop-btn crop-cancel" onclick="cropCancel()">Cancel</button>
+      <button class="crop-btn crop-confirm" onclick="cropConfirm()">Use This Photo</button>
+    </div>
+  </div>
+</div>
+<input type="file" id="reg-file-gallery" accept="image/*" style="display:none" onchange="regHandleFile(event)"/>
+<input type="file" id="reg-file-camera"  accept="image/*" capture="user" style="display:none" onchange="regHandleFile(event)"/>
+
+<!-- ── Photo Source Picker ── -->
+<div id="photo-source-modal">
+  <div class="photo-source-box">
+    <div class="photo-source-title">📷 Add Profile Photo</div>
+    <div class="photo-source-btns">
+      <button class="photo-source-btn psb-camera" onclick="pickCamera()">
+        <span>📷</span>Camera
+      </button>
+      <button class="photo-source-btn psb-gallery" onclick="pickGallery()">
+        <span>🖼️</span>Gallery
+      </button>
+    </div>
+    <button class="photo-source-cancel" onclick="closeSourcePicker()">Cancel</button>
+  </div>
+</div>
 
 <script>
 (function(){
+  /* ── state ── */
+  var croppedDataURL = null;
+  var cropScale = 1, cropX = 0, cropY = 0;
+  var cropDragging = false, cropStartX, cropStartY, cropOriginX, cropOriginY;
+  var CROP_SIZE = 260;
+
+  /* ── photo source picker ── */
+  window.regOpenCamera = function(){
+    document.getElementById('photo-source-modal').classList.add('open');
+  };
+
+  window.pickCamera = function(){
+    document.getElementById('photo-source-modal').classList.remove('open');
+    document.getElementById('reg-file-camera').click();
+  };
+
+  window.pickGallery = function(){
+    document.getElementById('photo-source-modal').classList.remove('open');
+    document.getElementById('reg-file-gallery').click();
+  };
+
+  window.closeSourcePicker = function(){
+    document.getElementById('photo-source-modal').classList.remove('open');
+  };
+
+  window.regHandleFile = function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      openCropModal(ev.target.result);
+    };
+    reader.readAsDataURL(file);
+    e.target.value=''; // reset so same file can be re-selected
+  };
+
+  /* ── crop modal ── */
+  function openCropModal(src){
+    var img = document.getElementById('crop-img');
+    img.src = src;
+    img.onload = function(){
+      // fit image initially so it fills the crop circle
+      var ratio = CROP_SIZE / Math.min(img.naturalWidth, img.naturalHeight);
+      cropScale = ratio;
+      cropX = (CROP_SIZE - img.naturalWidth * cropScale) / 2;
+      cropY = (CROP_SIZE - img.naturalHeight * cropScale) / 2;
+      document.getElementById('crop-zoom').value = cropScale;
+      document.getElementById('crop-zoom').min = ratio * 0.5;
+      document.getElementById('crop-zoom').max = ratio * 4;
+      document.getElementById('crop-zoom').step = ratio * 0.01;
+      cropApplyTransform();
+    };
+    document.getElementById('crop-modal').classList.add('open');
+  }
+
+  window.cropApplyTransform = function(){
+    var zoom = parseFloat(document.getElementById('crop-zoom').value);
+    if(zoom !== cropScale){
+      // zoom toward center
+      var cx = CROP_SIZE/2, cy = CROP_SIZE/2;
+      cropX = cx - (cx - cropX) * (zoom / cropScale);
+      cropY = cy - (cy - cropY) * (zoom / cropScale);
+      cropScale = zoom;
+    }
+    var img = document.getElementById('crop-img');
+    img.style.width  = (img.naturalWidth  * cropScale) + 'px';
+    img.style.height = (img.naturalHeight * cropScale) + 'px';
+    img.style.left = cropX + 'px';
+    img.style.top  = cropY + 'px';
+  };
+
+  /* drag to pan */
+  var stage = document.getElementById('crop-stage');
+  stage.addEventListener('mousedown', function(e){
+    cropDragging=true; cropStartX=e.clientX; cropStartY=e.clientY;
+    cropOriginX=cropX; cropOriginY=cropY; e.preventDefault();
+  });
+  document.addEventListener('mousemove', function(e){
+    if(!cropDragging) return;
+    cropX = cropOriginX + (e.clientX - cropStartX);
+    cropY = cropOriginY + (e.clientY - cropStartY);
+    cropApplyTransform();
+  });
+  document.addEventListener('mouseup', function(){ cropDragging=false; });
+
+  stage.addEventListener('touchstart', function(e){
+    cropDragging=true;
+    cropStartX=e.touches[0].clientX; cropStartY=e.touches[0].clientY;
+    cropOriginX=cropX; cropOriginY=cropY; e.preventDefault();
+  },{passive:false});
+  document.addEventListener('touchmove', function(e){
+    if(!cropDragging) return;
+    cropX = cropOriginX + (e.touches[0].clientX - cropStartX);
+    cropY = cropOriginY + (e.touches[0].clientY - cropStartY);
+    cropApplyTransform(); e.preventDefault();
+  },{passive:false});
+  document.addEventListener('touchend', function(){ cropDragging=false; });
+
+  window.cropCancel = function(){
+    document.getElementById('crop-modal').classList.remove('open');
+  };
+
+  window.cropConfirm = function(){
+    // render the visible crop circle to a canvas
+    var img = document.getElementById('crop-img');
+    var canvas = document.createElement('canvas');
+    canvas.width = CROP_SIZE; canvas.height = CROP_SIZE;
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath(); ctx.arc(CROP_SIZE/2,CROP_SIZE/2,CROP_SIZE/2,0,Math.PI*2);
+    ctx.clip();
+    ctx.drawImage(img, cropX, cropY, img.naturalWidth*cropScale, img.naturalHeight*cropScale);
+    croppedDataURL = canvas.toDataURL('image/png');
+
+    // show preview
+    var preview = document.getElementById('reg-avatar-preview');
+    preview.src = croppedDataURL;
+    preview.style.display = 'block';
+    document.getElementById('reg-avatar-placeholder').style.display = 'none';
+
+    document.getElementById('crop-modal').classList.remove('open');
+  };
+
+  /* ── form submit ── */
+  window.regSubmit = function(){
+    var name = document.getElementById('reg-name').value.trim();
+    var id   = document.getElementById('reg-id').value.trim();
+    var pwd  = document.getElementById('reg-pwd').value;
+    var err  = document.getElementById('reg-err');
+
+    if(!name){ err.textContent='Please enter your name.'; return; }
+    if(!id)  { err.textContent='Please enter your ID.'; return; }
+    if(pwd !== 'freedom'){ err.textContent='Incorrect password. Please try again.'; return; }
+
+    err.textContent='';
+
+    // ── embed user data into the page for all sections to use ──
+    window.USER_NAME   = name;
+    window.USER_ID     = id;
+    window.USER_PHOTO  = croppedDataURL || null;
+
+    // Update the universal dashboard avatar/name if elements exist
+    var udName = document.getElementById('ud-user-name');
+    var udAvatar = document.getElementById('ud-user-avatar');
+    var udDropdownName = document.getElementById('ud-dropdown-name');
+    if(udName) udName.textContent = name;
+    if(udDropdownName) udDropdownName.textContent = '👤 ' + name;
+    if(udAvatar && croppedDataURL){
+      udAvatar.src = croppedDataURL;
+      udAvatar.style.display = 'block';
+      var udAvatarPlaceholder = document.getElementById('ud-avatar-placeholder');
+      if(udAvatarPlaceholder) udAvatarPlaceholder.style.display = 'none';
+    }
+
+    // Populate any greeting elements across all pages
+    document.querySelectorAll('.user-name-display').forEach(function(el){ el.textContent = name; });
+    document.querySelectorAll('.user-id-display').forEach(function(el){ el.textContent = id; });
+    document.querySelectorAll('.user-photo-display').forEach(function(el){
+      if(croppedDataURL){ el.src = croppedDataURL; el.style.display='block'; }
+    });
+
+    // Dismiss gate
+    var gate = document.getElementById('reg-gate');
+    gate.style.transition='opacity 0.45s';
+    gate.style.opacity='0';
+    setTimeout(function(){
+      gate.style.display='none';
+      gate.style.opacity='';
+      showCourse(); buildCourse(); showWeek(1);
+    },450);
+  };
+
   /* ── avatar dropdown ── */
   window.toggleAvatarDropdown = function(e){
     e.stopPropagation();
@@ -2970,11 +3430,76 @@ window.showPage = function(id) {
   });
 
   window.doLogout = function(){
+    // Reload the page to return to registration
     location.reload();
   };
+
+  /* ── landing start (no registration gate) ── */
+  window.landingStart = function(){
+    window.USER_NAME  = '';
+    window.USER_ID    = '';
+    window.USER_PHOTO = null;
+    showCourse(); buildCourse(); showWeek(1);
+  };
+
+  /* ── reg-gate show/hide (kept for reference) ── */
+  window.openRegGate = function(){
+    var gate = document.getElementById('reg-gate');
+    gate.style.display = 'flex';
+    gate.style.opacity = '0';
+    gate.style.transition = 'opacity 0.35s';
+    setTimeout(function(){ gate.style.opacity = '1'; }, 20);
+  };
+
+  window.closeRegGate = function(){
+    var gate = document.getElementById('reg-gate');
+    gate.style.transition = 'opacity 0.3s';
+    gate.style.opacity = '0';
+    setTimeout(function(){ gate.style.display = 'none'; gate.style.opacity = ''; }, 320);
+  };
+
+  /* ── landing copy buttons ── */
+  window.landingCopy = function(text, btn){
+    navigator.clipboard.writeText(text).then(function(){
+      var orig = btn.textContent;
+      btn.textContent = '✓';
+      setTimeout(function(){ btn.textContent = orig; }, 1500);
+    });
+  };
+
+  /* ── course details popup ── */
+  window.openDetailsPopup = function(){
+    var modal = document.getElementById('course-details-modal');
+    var scroller = document.getElementById('cdm-scroll');
+    scroller.scrollTop = 0;
+    cdmUpdateArrow();
+    modal.classList.add('open');
+  };
+  window.closeDetailsPopup = function(){
+    document.getElementById('course-details-modal').classList.remove('open');
+  };
+  document.getElementById('course-details-modal').addEventListener('click', function(e){
+    if (e.target === this) closeDetailsPopup();
+  });
+
+  /* arrow scroll button */
+  function cdmUpdateArrow() {
+    var scroller = document.getElementById('cdm-scroll');
+    var btn = document.getElementById('cdm-arrow-btn');
+    var atBottom = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < 10;
+    btn.innerHTML = atBottom ? '&#8593;' : '&#8595;';
+    btn.title = atBottom ? 'Scroll up' : 'Scroll down';
+  }
+  window.cdmScroll = function(){
+    var scroller = document.getElementById('cdm-scroll');
+    var atBottom = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < 10;
+    scroller.scrollBy({ top: atBottom ? -scroller.clientHeight * 0.75 : scroller.clientHeight * 0.75, behavior: 'smooth' });
+    setTimeout(cdmUpdateArrow, 350);
+  };
+  document.getElementById('cdm-scroll').addEventListener('scroll', cdmUpdateArrow);
+
 })();
 </script>
-
 
 </body>
 </html>
